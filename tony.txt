@@ -1,0 +1,16 @@
+Juan Perez
+ingreso_datos
+8
+solicitar_valor
+5
+validar_valor
+5
+solicitar_rangos
+5
+Ana Garcia
+main
+6
+calcular_resultado
+4
+imprimir_informe
+7
