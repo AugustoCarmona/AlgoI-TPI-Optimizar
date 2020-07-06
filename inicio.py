@@ -8,10 +8,10 @@ def grabado(archivo,linea):
     
 def separacion (archivo):
     linea= archivo.readline()
-    while linea
+    while linea:
         if "#" in linea:
             grabado(comentarios.cvs,linea)
-        elif linea not "":
+        elif linea != "":
             #me fijo si no es vacio
             grabado(fuente_unico.csv,linea)
         
