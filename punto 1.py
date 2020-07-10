@@ -29,6 +29,9 @@ def imprimir (diccionarioCodigo,diccionarioComentarios):
         print ("Autor")
         
 def guardado (archivo, diccionarioCodigo):
+    
+    archivo.write("FUNCION,Parámetros,Líneas,Invocaciones,Returns,If/elif,for,while,Break,Exit,Coment,Ayuda,Autor"+ "\n")
+         
     for funcion in diccionarioCodigo:
         
         parametros=diccionarioCodigo[funcion][0]
