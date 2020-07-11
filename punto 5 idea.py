@@ -1,7 +1,8 @@
 #falta forma de definir cuando es un nuevo autor y depende mucho del archivo en y el orden pero
 #imagine que el archivo lo haciamos nosotros asi que no habria drama
+#tambien quiero modularizar esto
 tony=open("ejemplo.txt","r")
-numeros="12345678990"
+numeros="1234567890"
 funciones=0
 lineas=0
 cantidad_de_lineas=43
