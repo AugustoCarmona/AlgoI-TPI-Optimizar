@@ -1,0 +1,6 @@
+Nombre, Parametros, Lineas, Invocaciones, Return, If/elif, For, While, Break, Exit, Coments, Ayuda, Autor, Info
+factorial.lib_matematica, 1, 7, 1, 1, 4, 1, 0, 0, 0, 0, si, Tony Stark, """[Autor: Tony Stark] [Ayuda: Calcula el factorial de el numero recibido que debe ser mayor o igual a cero] (n)"""
+potencia.lib_matematica, 2, 25, 2, 1, 2, 0, 1, 0, 0, 0, si, Natasha Romanova, """[Autor: Natasha Romanova] [Ayuda: Calcula el factorial de el numero recibido que debe ser mayor o igual a cero] (base) (exponente)"""
+es_primo.lib_matematica, 1, 14, 1, 1, 5, 0, 0, 0, 0, 2, no, Tony Stark, """[Autor: Tony Stark] [Ayuda: Calcula el factorial de el numero recibido que debe ser mayor o igual a cero] (valor)"""
+mdc.lib_matematica, 2, 20, 1, 1, 2, 2, 1, 0, 0, 1, si, Tony Stark, """[Autor: Tony Stark] [Ayuda: Calcula el factorial de el numero recibido que debe ser mayor o igual a cero] (nro_1) (nro_2)"""
+mcm.lib_matematica, 2, 21, 3, 1, 1, 1, 0, 0, 0, 0, no, Steve Rogers, """[Autor: Steve Rogers] [Ayuda: Calcula el factorial de el numero recibido que debe ser mayor o igual a cero] (nro_1) (nro_2)"""
