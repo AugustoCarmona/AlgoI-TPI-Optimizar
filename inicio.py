@@ -69,5 +69,4 @@ def recorrer_programas(programas):
             analizar_lineas(archivo, programa, codigo, comentarios)       
 
 programas=crear_lista()
-#crear_tabla(programas)
 recorrer_programas(programas)
