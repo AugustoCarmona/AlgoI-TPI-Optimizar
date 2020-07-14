@@ -2,12 +2,14 @@
 
 
 
-def contador(archivo,lista_final):
+def contador(archivo,lista_codigo):
           
-          for posicion in range(len(lista_final)):
+          for posicion in range(len(lista_codigo)):
               diccionario={}
               nombre_funcion=""
               nombre_modulo=""
+              autor=""
+              ayuda=""
               cont_parametr=0
               cont_return=0
               cont_if=0
@@ -16,34 +18,43 @@ def contador(archivo,lista_final):
               cont_break=0
               cont_exit=0
               cont_coment=0
-              for caracter in range(len(lista_final[posicion])):
+              for caracter in range(len(lista_codigo[posicion])):
                  if caracter==0:
-                     nombre_funcion=lista_final[posicion][caracter]
+                     nombre_funcion=lista_codigo[posicion][caracter]
                  elif caracter==2:
-                     nombre_modulo=lista_final[posicion][caracter]
+                     nombre_modulo=lista_codigo[posicion][caracter]
                  
-                 if "(" in lista_final[posicion][caracter] and ")" in lista_final[posicion][caracter]:
+                 if "(" in lista_codigo[posicion][caracter] and ")" in lista_codigo[posicion][caracter]:
                      cont_parametr+=1
-                 if "return" in lista_final[posicion][caracter]:
+                 if "return" in lista_codigo[posicion][caracter]:
                     cont_return+=1
-                 if "if" in lista_final[posicion][caracter] or "elif" in lista_final[posicion][caracter]:
+                 if "if" in lista_codigo[posicion][caracter] or "elif" in lista_codigo[posicion][caracter]:
                      cont_if+=1
-                 if "for" in lista_final[posicion][caracter]:
+                 if "for" in lista_codigo[posicion][caracter]:
                      cont_for+=1
-                 if "while" in lista_final[posicion][caracter]:
+                 if "while" in lista_codigo[posicion][caracter]:
                      cont_while+=1
-                 if "break" in lista_final[posicion][caracter]:
+                 if "break" in lista_codigo[posicion][caracter]:
                      cont_break+=1
-                 if "exit" in lista_final[posicion][caracter]:
+                 if "exit" in lista_codigo[posicion][caracter]:
                      cont_exit+=1
-                 if "#" in lista_final[posicion][caracter]:
+                 if "#" in lista_codigo[posicion][caracter]:
                      cont_coment+=1
-              diccionario={"nombre funcion":nombre_funcion,"nombre_modulo":nombre_modulo,"parametros":cont_parametr,"returns":cont_return,"elif/if":cont_if,"for":cont_for,"while":cont_while,"break":cont_break,"exit":cont_exit,"comentarios":cont_coment}
+                 lista_comentarios=merge_comentarios.readline().split(";")
+                 if nombre_funcion in lista_comentarios:
+                             for posicion_comentario in lista_comentarios:
+                                 if "Autor" in posicion_comentario:
+                                      autor= posicion_comentario
+                                 elif "Ayuda" in posicion_comentario:
+                                      ayuda= posicion_comentario
+                             
+              merge_comentarios.seek(0)
+              diccionario={"nombre funcion":nombre_funcion,"nombre_modulo":nombre_modulo,"parametros":cont_parametr,"returns":cont_return,"elif/if":cont_if,"for":cont_for,"while":cont_while,"break":cont_break,"exit":cont_exit,"comentarios":cont_coment,"autor":autor,"ayuda":ayuda}
               print(diccionario)
               archivo.write(str(nombre_funcion) +";" + str(nombre_modulo) + ";" + str(cont_parametr) +";"+ str(cont_return)+";"+str(cont_if)+";"+str(cont_for)+";"+str(cont_while)+";"+str(cont_break) +";"+str(cont_exit)+";"+str(cont_coment)+"\n")
             
 
-def armado_listas(merge):
+def armado_listas_fuente_unico(merge):
     lista_total=merge.readlines()
     merge.seek(0)
     lista_parcial=merge.readline().split(";")
@@ -53,7 +64,18 @@ def armado_listas(merge):
         lista_parcial=merge.readline().split(";")
     
     return lista_final
+ 
+
+def armado_listas_comentarios(merge):
+    lista_total=merge.readlines()
+    merge.seek(0)
+    lista_parcial=merge.readline().split(";")
+    lista_final=[]
+    for i in range(len(lista_total)):
+        lista_final.append(lista_parcial)
+        lista_parcial=merge.readline().strip("\n").split(";")
     
+    return lista_final
   
 
 
@@ -64,13 +86,11 @@ def armado_listas(merge):
 
 #---------------------------bloque principal -----------------------------------------
 archivo=open("panel_general.csv","w")
-elegir=input("elija merge_codigo o merge_comentario: ")
-if elegir=="merge_codigo":
-     merge=open("app_matematica_codigo.csv","r")
-     
-else:
-    merge=open("lib_matematica_codigo.csv","r")
-
-lista_final=armado_listas(merge)
-contador(archivo,lista_final)
+merge_fuente_unico=open("app_matematica_codigo.csv","r")
+merge_comentarios=open("app_matematica_comentarios.csv","r")
+lista_merge_fuente_unico=armado_listas_fuente_unico(merge_fuente_unico)
+#lista_comentarios=armado_listas_comentarios(merge_comentarios)
+contador(archivo,lista_merge_fuente_unico)
 archivo.close()
+
+
