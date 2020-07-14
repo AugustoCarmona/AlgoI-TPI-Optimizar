@@ -24,7 +24,7 @@ def contador(archivo,lista_codigo):
                  elif caracter==2:
                      nombre_modulo=lista_codigo[posicion][caracter]
                  
-                 if "(" in lista_codigo[posicion][caracter] and ")" in lista_codigo[posicion][caracter]:
+                 if "(" in lista_codigo[posicion][caracter] and ")" in lista_codigo[posicion][caracter]:#verificar esto
                      cont_parametr+=1
                  if "return" in lista_codigo[posicion][caracter]:
                     cont_return+=1
@@ -38,7 +38,7 @@ def contador(archivo,lista_codigo):
                      cont_break+=1
                  if "exit" in lista_codigo[posicion][caracter]:
                      cont_exit+=1
-                 if "#" in lista_codigo[posicion][caracter]:
+                 if "#" in lista_codigo[posicion][caracter]:# para revisar 
                      cont_coment+=1
                  lista_comentarios=merge_comentarios.readline().split(";")
                  if nombre_funcion in lista_comentarios:
@@ -55,27 +55,23 @@ def contador(archivo,lista_codigo):
             
 
 def armado_listas_fuente_unico(merge):
-    lista_total=merge.readlines()
-    merge.seek(0)
-    lista_parcial=merge.readline().split(";")
+    linea=merge_fuente_unico.readline().rstrip("\n").split(";")
     lista_final=[]
-    for i in range(len(lista_total)):
-        lista_final.append(lista_parcial)
-        lista_parcial=merge.readline().split(";")
-    
-    return lista_final
+    while linea!=[""]:
+         lista_final.append(linea)
+         linea=merge_fuente_unico.readline().split(";")
  
+    return lista_final
+
 
 def armado_listas_comentarios(merge):
-    lista_total=merge.readlines()
-    merge.seek(0)
-    lista_parcial=merge.readline().split(";")
-    lista_final=[]
-    for i in range(len(lista_total)):
-        lista_final.append(lista_parcial)
-        lista_parcial=merge.readline().strip("\n").split(";")
-    
-    return lista_final
+   linea=merge_fuente_unico.readline().rstrip("\n").split(";")
+   lista_final=[]
+   while linea!=[""]:
+         lista_final.append(linea)
+         linea=merge_fuente_unico.readline().split(";")
+ 
+   return lista_final
   
 
 
