@@ -20,7 +20,8 @@ def extractor_informacion(): #se activa en main
 #-----------------------------------
 def ajustar_largo(texto, largo): #se activa en generador_tabla
     """[Autor: Augusto Carmona]
-    """
+
+"""
     if len(texto) > largo:
         texto = texto[:largo]
     elif len(texto) < largo:
