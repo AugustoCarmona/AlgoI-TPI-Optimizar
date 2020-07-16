@@ -1,11 +1,13 @@
 
 
 def armado_de_tabla(lista_merge,registro_de_invocadores,registro_de_invocaciones_de_funcion):
-        
+    """En revision"""    
     for b in registro_de_invocadores:
         print(registro_de_invocadores[b]["invoco a"],end="             ")
 
+
 def armado_fila(lista_merge):
+    """En revision"""
     print("funciones",end="              ")
     for i in range(1,len(lista_merge)+1):
          
@@ -14,6 +16,9 @@ def armado_fila(lista_merge):
 
 
 def lista_solo_funciones(lista_merge):
+    """[Autor:Luciano Solis]
+       [Ayuda: recibe una lista anidada y devuelve una lista con solo la primera posicion de cada sublista de la lista anidada]
+    """
     lista_solo_funciones=[]
     for i in range(len(lista_merge)):
         lista_solo_funciones.append(lista_merge[i][0])
@@ -24,6 +29,11 @@ def lista_solo_funciones(lista_merge):
 
 
 def armado_listas(merge):
+    """[Autor]:Luciano Solis
+       [Ayuda]: Recibe un archivo y devuelve toda su informacion en una lista anidada
+       
+    """
+    
     linea=merge.readline().strip("\n").split(";")
     lista_final=[]
     while linea!=[""]:
@@ -32,6 +42,11 @@ def armado_listas(merge):
     return lista_final
 
 def invocaciones(lista_merge,archivo,lista_solo_funciones):
+    """[Autor:Luciano Solis]
+       [Ayuda: Recibe una lista anidada, y va recorriendo cada sublista para verificar las veces en que la funcion
+       la cual se esta recorriendo invoco a las demas funciones y las veces que las demas funciones invocarion a la funcion
+       a la cual estoy recorriendo]
+    """
     #armado_fila(lista_merge)
     
     
