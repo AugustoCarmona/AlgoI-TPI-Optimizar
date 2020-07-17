@@ -7,14 +7,14 @@ def generador(lista_anidada):
         listas horizontalmente]
     """
     max_caracteres = 0 #identifica la palabra con mas caracteres
-    for i in lista_anidada:
-        for j in i:
-            if len(j) > max_caracteres:
-                max_caracteres = len(j) * 2
+    for lista in lista_anidada:
+        for elemento in lista:
+            if len(elemento) > max_caracteres:
+                max_caracteres = len(elemento) * 2
     
     lista_ajustada = [] #ajusta el largo de cada lista y lo adihere a una nueva lista anidada y ajustada
-    for i in lista_anidada:
-        renglon = ajustar(i, max_caracteres)
+    for lista in lista_anidada:
+        renglon = ajustar(lista, max_caracteres)
         lista_ajustada.append(renglon)
     
     cant_caracteres = " || ".join(lista_ajustada[0])
@@ -34,7 +34,7 @@ def ajustar(fila, max_caracteres):
         a esta funcion)]
     """
     renglon = []
-    for i in fila: # da a cada elemento de la lista el largo (en caracteres) de la palabra mas larga
+    for i in fila: #da a cada elemento de la lista el largo (en caracteres) de la palabra mas larga
         if len(i) == max_caracteres:
             renglon.append(i)
         elif len(i) < max_caracteres:
@@ -50,5 +50,3 @@ def tabla(lista_anidada):
         [Ayuda: recibe una lista anidada y la envia al generador() para que se la imprima en formato de tabla]
     """
     generador(lista_anidada)
-
-tabla(lista_anidada)
