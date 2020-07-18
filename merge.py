@@ -22,6 +22,7 @@ def abrir(lista_Completa_Y_Ordenada,diccionario,lista_de_archivos):
         valor.close()
     for funcion in lista_Completa_Y_Ordenada:
         linea_a_guardar=lista_de_programas[funcion]
+        print(linea_a_guardar)
         guardar(linea_a_guardar,union)
 def guardar(nombre,archivo):
     
