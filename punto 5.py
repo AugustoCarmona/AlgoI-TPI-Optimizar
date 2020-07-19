@@ -3,18 +3,30 @@ def imprimir (diccionario,total_lineas,funciones_totales):
         [Ayuda:Esta funcion imprime el diccionario de autores de la forma pedida y da el porcentaje]
     """
     for autor in diccionario:
+        import grabado
         print ("%-1s %s" %("Autor:", autor))
+        texto= ("%-1s %s" %("Autor:", autor))
+        grabado.grabar (texto,"participacion.txt")
         print("%-6s %-23s %s" %("","Funcion", "Lineas"))
+        texto =("%-6s %-23s %s" %("","Funcion", "Lineas"))
+        grabado.grabar (texto,"participacion.txt")
         print ("---------------------------------------")
-        print("")
+        texto = "---------------------------------------"
+        grabado.grabar(texto,"participacion.txt")
+        print ("")
+        texto = ""
+        grabado.grabar (texto,"participacion.txt")
         lineas_imprimir(diccionario,autor,total_lineas)
     print("%s %s %-1s %6s" %("Total:",funciones_totales, "Funciones - Lineas",total_lineas) )
+    texto = ("%s %s %-1s %6s" %("Total:",funciones_totales, "Funciones - Lineas",total_lineas) )
+    grabado.grabar (texto,"participacion.txt")
 
 def lineas_imprimir(diccionario,autor,total_lineas):
     """ [Autor:Jose Piñeiro]
         [Ayuda:Esta funcion imprime el o los renglones de las funciones en las que trabajo cada autor
         y tambien da el porcentaje de trabajo]
     """
+    import grabado
     cantidad_funciones = 0
     cantidad_lineas = 0
     for funcion in range(0,len(diccionario[autor])):
@@ -24,12 +36,18 @@ def lineas_imprimir(diccionario,autor,total_lineas):
             cantidad_funciones += 1
             cantidad_lineas += int(diccionario[autor][funcion][numeros])
             print ("%-6s %-23s %s" % ( "" , diccionario [ autor ] [funcion] [ funcion_nombre ] , diccionario [ autor ] [funcion] [ numeros ] ) )
+            texto = ("%-6s %-23s %s" % ( "" , diccionario [ autor ] [funcion] [ funcion_nombre ] , diccionario [ autor ] [funcion] [ numeros ] ) )
+            grabado.grabar (texto,"participacion.txt")
             if numeros < 2:   
                 funcion += 1
                 numeros += 1
     porcentaje = cantidad_lineas /  total_lineas*100
     print("%-6s %s %-22s %s %s %s" %("",cantidad_funciones,"funciones - lineas",cantidad_lineas,int(porcentaje),"%"))
+    texto = ("%-6s %s %-22s %s %s %s" %("",cantidad_funciones,"funciones - lineas",cantidad_lineas,int(porcentaje),"%"))
+    grabado.grabar (texto,"participacion.txt")
     print("")
+    texto = ("")
+    grabado.grabar (texto,"participacion.txt")
     
 def autores ():
     """ [Autor:Jose Piñeiro]
