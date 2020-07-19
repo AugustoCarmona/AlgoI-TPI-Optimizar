@@ -1,0 +1,113 @@
+-----------------------------------
+|Funcion|: derivada()
+|Contadores Internos de la Funcion|
+|Modulo: lib_matematica
+|Cantidad de Parametros:  2
+|Lineas de Codigo de la Funcion:  25
+|Cantidad de Invocaciones a la Funcion:  2
+|Cantidad de Returns:  1
+|Cantidad de Ciclos If/elif:  2
+|Cantidad de Ciclos For:  0
+|Cantidad de Ciclos While:  1
+|Cantidad de Breaks:  0
+|Cantidad de Exits:  0
+|Cantidad de Comentarios:  0
+|Ayuda:  si
+|Autor:  Natasha Romanova
+----------------------------------------------------------------------
+|Funcion|: es_primo()
+|Contadores Internos de la Funcion|
+|Modulo: lib_matematica
+|Cantidad de Parametros:  1
+|Lineas de Codigo de la Funcion:  14
+|Cantidad de Invocaciones a la Funcion:  1
+|Cantidad de Returns:  1
+|Cantidad de Ciclos If/elif:  5
+|Cantidad de Ciclos For:  0
+|Cantidad de Ciclos While:  0
+|Cantidad de Breaks:  0
+|Cantidad de Exits:  0
+|Cantidad de Comentarios:  2
+|Ayuda:  no
+|Autor:  Miles Morales
+----------------------------------------------------------------------
+|Funcion|: integral()
+|Contadores Internos de la Funcion|
+|Modulo: lib_matematica
+|Cantidad de Parametros:  1
+|Lineas de Codigo de la Funcion:  14
+|Cantidad de Invocaciones a la Funcion:  1
+|Cantidad de Returns:  1
+|Cantidad de Ciclos If/elif:  5
+|Cantidad de Ciclos For:  0
+|Cantidad de Ciclos While:  0
+|Cantidad de Breaks:  0
+|Cantidad de Exits:  0
+|Cantidad de Comentarios:  2
+|Ayuda:  no
+|Autor:  Miles Morales
+----------------------------------------------------------------------
+|Funcion|: mcm()
+|Contadores Internos de la Funcion|
+|Modulo: lib_matematica
+|Cantidad de Parametros:  2
+|Lineas de Codigo de la Funcion:  21
+|Cantidad de Invocaciones a la Funcion:  3
+|Cantidad de Returns:  1
+|Cantidad de Ciclos If/elif:  1
+|Cantidad de Ciclos For:  1
+|Cantidad de Ciclos While:  0
+|Cantidad de Breaks:  0
+|Cantidad de Exits:  0
+|Cantidad de Comentarios:  0
+|Ayuda:  no
+|Autor:  Steve Rogers
+----------------------------------------------------------------------
+|Funcion|: mdc()
+|Contadores Internos de la Funcion|
+|Modulo: lib_matematica
+|Cantidad de Parametros:  2
+|Lineas de Codigo de la Funcion:  20
+|Cantidad de Invocaciones a la Funcion:  1
+|Cantidad de Returns:  1
+|Cantidad de Ciclos If/elif:  2
+|Cantidad de Ciclos For:  2
+|Cantidad de Ciclos While:  1
+|Cantidad de Breaks:  0
+|Cantidad de Exits:  0
+|Cantidad de Comentarios:  1
+|Ayuda:  si
+|Autor:  Tony Stark
+----------------------------------------------------------------------
+|Funcion|: polinomio()
+|Contadores Internos de la Funcion|
+|Modulo: lib_matematica
+|Cantidad de Parametros:  2
+|Lineas de Codigo de la Funcion:  20
+|Cantidad de Invocaciones a la Funcion:  1
+|Cantidad de Returns:  1
+|Cantidad de Ciclos If/elif:  2
+|Cantidad de Ciclos For:  2
+|Cantidad de Ciclos While:  1
+|Cantidad de Breaks:  0
+|Cantidad de Exits:  0
+|Cantidad de Comentarios:  1
+|Ayuda:  si
+|Autor:  Tony Stark
+----------------------------------------------------------------------
+|Funcion|: potencia()
+|Contadores Internos de la Funcion|
+|Modulo: lib_matematica
+|Cantidad de Parametros:  2
+|Lineas de Codigo de la Funcion:  25
+|Cantidad de Invocaciones a la Funcion:  2
+|Cantidad de Returns:  1
+|Cantidad de Ciclos If/elif:  2
+|Cantidad de Ciclos For:  0
+|Cantidad de Ciclos While:  1
+|Cantidad de Breaks:  0
+|Cantidad de Exits:  0
+|Cantidad de Comentarios:  0
+|Ayuda:  si
+|Autor:  Natasha Romanova
+-----------------------------------
