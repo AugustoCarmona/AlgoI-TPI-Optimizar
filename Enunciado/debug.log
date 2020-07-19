@@ -1,4 +1,0 @@
-[0715/205708.519:ERROR:process_reader_win.cc(127)] NtOpenThread: {Acceso denegado} Un proceso ha solicitado acceso a un objeto, pero no se le han concedido esos derechos de acceso. (0xc0000022)
-[0715/205708.878:ERROR:exception_snapshot_win.cc(99)] thread ID 24028 not found in process
-[0715/205709.159:ERROR:process_reader_win.cc(127)] NtOpenThread: {Acceso denegado} Un proceso ha solicitado acceso a un objeto, pero no se le han concedido esos derechos de acceso. (0xc0000022)
-[0715/205709.159:ERROR:exception_snapshot_win.cc(99)] thread ID 25036 not found in process
