@@ -1,0 +1,8 @@
+menu_MCD;solicitar_valor;solicitar_valor;lib_matematica.mcd;5
+menu_MCM;solicitar_valor;solicitar_valor;lib_matematica.mcm;5
+menu_elegir;menu_opciones;solicitar_valor;menu_factorial;menu_potencia;menu_primo;menu_MCD;menu_MCM;menu_opciones;solicitar_valor;18
+menu_factorial;solicitar_valor;lib_matematica.factorial;4
+menu_opciones;11
+menu_potencia;solicitar_valor;solicitar_valor;lib_matematica.potencia;5
+menu_primo;solicitar_valor;lib_matematica.es_primo;4
+solicitar_valor;solicitar_valor;5
