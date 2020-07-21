@@ -3,61 +3,30 @@ Autor:  Natasha Romanova
 ---------------------------------------
 
        potencia.lib_matematica  25
-       integral.lib_matematica  25
-       malo.lib_matematica      25
-       3 funciones - lineas     75 21 %
+       derivada.lib_matematica  25
+       2 funciones - lineas     50 35 %
 
 Autor:  Miles Morales
        Funcion                 Lineas
 ---------------------------------------
 
        es_primo.lib_matematica  14
-       igualdad.lib_matematica  25
-       2 funciones - lineas     39 11 %
+       integral.lib_matematica  14
+       2 funciones - lineas     28 20 %
 
 Autor:  Tony Stark
        Funcion                 Lineas
 ---------------------------------------
 
        mdc.lib_matematica       20
-       derivada.lib_matematica  7
-       miltiplicar.lib_matematica  14
-       desigualdad.lib_matematica  14
-       es.lib_matematica        7
-       tu.lib_matematica        20
-       factorial.lib_matematica  7
-       7 funciones - lineas     89 25 %
+       polinomio.lib_matematica  20
+       2 funciones - lineas     40 28 %
 
 Autor:  Steve Rogers
        Funcion                 Lineas
 ---------------------------------------
 
        mcm.lib_matematica       21
-       fumar.lib_matematica     21
-       2 funciones - lineas     42 12 %
+       1 funciones - lineas     21 15 %
 
-Autor:  Howard The Duck
-       Funcion                 Lineas
----------------------------------------
-
-       dividir.lib_matematica   20
-       despejar.lib_matematica  20
-       2 funciones - lineas     40 11 %
-
-Autor:  Peter Parker
-       Funcion                 Lineas
----------------------------------------
-
-       sumar.lib_matematica     21
-       salud.lib_matematica     21
-       2 funciones - lineas     42 12 %
-
-Autor:  Bruce Banner
-       Funcion                 Lineas
----------------------------------------
-
-       restar.lib_matematica    7
-       para.lib_matematica      14
-       2 funciones - lineas     21 6 %
-
-Total: 20 Funciones - Lineas    348
+Total: 7 Funciones - Lineas    139
