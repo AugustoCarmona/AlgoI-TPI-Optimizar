@@ -17,6 +17,7 @@ def contador(archivo,lista_codigo):
               cont_break=0
               cont_exit=0
               cont_coment=0
+              cont_lineas_de_codigo=0
               for caracter in range(len(lista_codigo[posicion])):
                  if caracter==0:
                      nombre_funcion=lista_codigo[posicion][caracter]
@@ -32,7 +33,8 @@ def contador(archivo,lista_codigo):
                  
                 # if "(" in lista_codigo[posicion][caracter] and ")" in lista_codigo[posicion][caracter]:#verificar esto
                      #cont_parametr+=1
-                
+                 if caracter >2:
+                     cont_lineas_de_codigo+=1
                  if "return" in lista_codigo[posicion][caracter]:
                     cont_return+=1
                  if "if" in lista_codigo[posicion][caracter] or "elif" in lista_codigo[posicion][caracter]:
@@ -58,7 +60,7 @@ def contador(archivo,lista_codigo):
                                       
               invocaciones=cantidad_de_invocaciones(lista_merge_fuente_unico,nombre_funcion,posicion) # revisar invocaciones   
               merge_comentarios.seek(0)
-              diccionario={"Funcion":nombre_funcion+"." +nombre_modulo,"parametros":cont_parametr,"returns":cont_return,"elif/if":cont_if,"for":cont_for,"while":cont_while,"break":cont_break,"exit":cont_exit,"comentarios":cont_coment,"autor":autor,"ayuda":ayuda,"invocaciones":invocaciones}
+              diccionario={"Funcion":nombre_funcion+"." +nombre_modulo,"parametros":cont_parametr,"cantidad lineas de codigo":cont_lineas_de_codigo,"invocaciones":invocaciones,"returns":cont_return,"elif/if":cont_if,"for":cont_for,"while":cont_while,"break":cont_break,"exit":cont_exit,"comentarios":cont_coment,"ayuda":ayuda,"autor":autor}
               #print(diccionario)
               imprimir_diccionario(diccionario)
               archivo.write(str(nombre_funcion)+"."+str(nombre_modulo) + ";" + str(cont_parametr) +";"+ str(cont_return)+";"+str(cont_if)+";"+str(cont_for)+";"+str(cont_while)+";"+str(cont_break) +";"+str(cont_exit)+";"+str(cont_coment)+"\n")
@@ -106,6 +108,9 @@ def cantidad_de_invocaciones(lista_codigo,nombre_funcion,posicion):
 
 
 def imprimir_diccionario(diccionario):
+    """[Autor:Luciano Solis]
+       [Ayuda: Esta funcion recibe un diccionario con todos los datos cargados y los imprime]
+    """
     for clave in diccionario:
         print(clave,": ",diccionario[clave])
         
