@@ -1,5 +1,5 @@
 def obtener_informacion(): #invocada desde main()
-    """ [Autor: Jose Piñeiro]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: abre el archivo fuente_unico y extrae el codigo de cada funcion y su nombre el cual
         evaluara con la funcion procesar_diccionario() que nos dara  los datos necesarios para armar
         el diagrama de arbol]
@@ -19,7 +19,7 @@ def obtener_informacion(): #invocada desde main()
 
 #------------------------------------------------------------
 def procesar_diccionario(funciones): #invocada desde obtener_informacion()
-    """ [Autor: Jose Piñeiro]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: extrae cuantas lineas de codigo hay en cada funcion e invoca a evaluador_invocaciones() para evaluar
         cuantas invocaciones genera]
     """
@@ -39,7 +39,7 @@ def procesar_diccionario(funciones): #invocada desde obtener_informacion()
 
 #------------------------------------------------------------
 def evaluador_invocaciones(funcion, funciones, llamados, cantidad_lineas): #invocada desde procesar diccionario()
-    """ [Autor: Jose Piñeiro]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: extrae cuantas invoaciones genra cada funcion]
     """
     for linea in funciones:
@@ -77,7 +77,7 @@ def evaluador_invocaciones(funcion, funciones, llamados, cantidad_lineas): #invo
     
 #------------------------------------------------------------
 def diccionario_unificado(llamados, cantidad_lineas): #invocada desde procesar_diccionario()
-    """ [Autor: Jose Piñeiro]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: da estructura final al diccionario de funciones]
     """
     funciones_no_llamadas = []
@@ -98,7 +98,7 @@ def diccionario_unificado(llamados, cantidad_lineas): #invocada desde procesar_d
 #--------------------------------------------------------------------------------------------------------------#
 #--------------------------------------------------------------------------------------------------------------#
 def imprimir(diccionario):
-    """ [Autor: Augusto Carmona]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: imprime un diagrama de arbol indicando que funcion llama a que funcion y entre parentesis 
         la cantidad de lineas de codigo de cada una]
     """
@@ -110,7 +110,7 @@ def imprimir(diccionario):
 
 #---------------------------------#
 def generar_diagrama(diccionario):
-    """ [Autor: Augusto Carmona]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: busca en el diccionario la informacion de invocaciones y cantidad de lineas sobre cada funcion
         y la estructura en modo de diagrama de arbol]
     """
@@ -142,7 +142,7 @@ def generar_diagrama(diccionario):
 
 #------------------------------------------------------------
 def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama()
-    """ [Autor: Augusto Carmona]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: identifica a la funcion que llama a más funciones del programa]
     """
     llamados_principal = []
@@ -165,7 +165,7 @@ def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama(
 #--------------------------------------------------- bloque principal ---------------------------------------------------#
 #------------------------------------------------------------------------------------------------------------------------#
 def main_diagrama_arbol():
-    """ [Autor: Augusto Carmona]
+    """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: divide el programa en dos bloques principales, uno que extrae la
         informacion del archivo fuente_unico.csv y otro que la imprime como un diagrama de arbol]
     """

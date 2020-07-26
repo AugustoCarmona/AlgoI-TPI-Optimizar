@@ -1,5 +1,5 @@
 def tabla(lista_funciones):
-    """ [Autor: Augusto Carmona]
+    """ [Autor: Augusto Carmona, Gaston Mondin]
         [Ayuda: Iimprime una tabla en base a las lista recibida]
     """
     if len(lista_funciones) % 5 == 0:
