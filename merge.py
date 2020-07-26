@@ -6,6 +6,9 @@ def grabar_archivo(archivo, linea):
     archivo.write(linea+"\n")
 
 def unir_archivos(archivos, archivofinal):
+    """[Autor: Gastón Mondín]
+    [Ayuda: Une todos los archivos en uno solo mediante un merge.]
+    """
     funciones=[]
     for archivo in archivos:
         funciones.append(leer_archivo(archivo))
@@ -22,6 +25,7 @@ def unir_archivos(archivos, archivofinal):
         funciones[j]=leer_archivo(archivos[j])
         if funciones[j]=="":
             del(funciones[j])
+            archivos[j].close()
             del(archivos[j])
 
 def realizar_merge(programas):
