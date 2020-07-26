@@ -1,24 +1,69 @@
 from tabla_2 import tabla
 
 #-----------------------------------
-def extractor_informacion(): #se activa en main
+def extraer_informacion():
+    
+    dicc_funciones = {}
+    dicc_general = extractor_informacion_general()
+    dicc_comentarios = extractor_informacion_ayuda()
+
+    for funcion in dicc_general:
+        dicc_funciones[funcion] = dicc_general[funcion], dicc_comentarios[funcion]
+
+    return sorted(dicc_funciones), dicc_funciones
+
+#-----------------------------------
+def extractor_informacion_general(): #se activa en main
     """ [Autor: Augusto Carmona]
         [Ayuda: Lee cada linea del archivo .csv y extrae los datos de las funciones.
         Por ultimo genera una lista ordenada    alfabeticamente con los nombres de las funciones
         en el archivo y la devuelve junto con el diccionario original.]
     """
-    with open("panel_general.csv", "r") as archivo:
+    with open("fuente_unico.csv", "r") as fuente:
 
-        dicc_funciones = {}
-        linea = archivo.readline()
-        for linea in archivo: #acumula los nombres de las funciones como clave en un diccionario y agrega la info de cada funcion a su lista correspondiente
-            nombre, parametros, lineas, invocaciones, retorno, si, para, mientras, quiebre, salida, comentarios, ayuda, autor, info = linea.rstrip().split(";")
-            funcion, modulo = nombre.split(".")
-            dicc_funciones[funcion] = [modulo, parametros, lineas, invocaciones, retorno, si, para, mientras, quiebre, salida, comentarios, ayuda, autor, info]
+        dicc_informacion_general = {}
+        for linea in fuente:
+            
+            #nombre de la funcion y modulo
+            funcion = linea.rstrip().split(";")[0]
 
-        return sorted(dicc_funciones), dicc_funciones
+            lineas = linea.rstrip().split(";")[1:]
+
+            #empalme
+            dicc_informacion_general[funcion] = lineas
+            
+        return dicc_informacion_general
 
 #-----------------------------------
+def extractor_informacion_ayuda():
+    """ [Autor: Augusto Carmona]
+        [Ayuda: ]
+    """
+    with open("comentarios.csv", "r") as comentarios:
+        
+        dicc_comentarios = {}
+        comentarios.seek(0)
+
+        for linea in comentarios:
+            
+            funcion = linea.rstrip("\n").split(";")[0]
+            if len(linea.rstrip("\n").split(";")) > 1:
+                autor = linea.rstrip("\n").split(";")[1]
+                if len(linea.rstrip("\n").split(";")) > 2:
+                    ayuda = linea.rstrip("\n").split(";")[2]
+                    if len(linea.rstrip("\n").split(";")) > 3:
+                        comentarios = linea.rstrip("\n").split(";")[3:]
+            else:
+                autor = "**No hay autor disponible**"
+                ayuda = "**No hay ayuda disponible**"
+
+            #empalme
+            dicc_comentarios[funcion] = autor, ayuda
+        
+        return dicc_comentarios
+
+#-----------------------------------------------------------
+#-----------------------------------------------------------
 def generador_tabla(lista_funciones): #se activa en main
     """ [Autor: Augusto Carmona]
         [Ayuda: Agrega a cada funcion un "()" y utiliza la lista de funciones para 
@@ -33,20 +78,25 @@ def generador_tabla(lista_funciones): #se activa en main
         nueva_lista_funciones.append(i)
     
     tabla(nueva_lista_funciones)
-    
-#-----------------------------------
+
+#-----------------------------------------------------------
+#-----------------------------------------------------------
 def consulta_individual(funcion, diccionario_funciones): #se activa en menu_ingreso
     """ [Autor: Augusto Carmona]
         [Ayuda: Recibe el nombre de una funcion y el diccionario de funciones
         y devuleve la informacion de ayuda, autor y parametros de dicha funcion]
     """
     print()
-    print('-----------------------------------')
+    print('----------------------------------------------')
     print()
     print('|Info|:')
-    print('-------')
-    print(diccionario_funciones[funcion][13].replace('"', '').replace('[', '').replace(']', '\n').replace('\n (', '\n Parametros: ('))
-    print('-----------------------------------')
+    print('-------------')
+    print(diccionario_funciones[funcion][1][0].strip("[]")) #autor
+    print("-" * 6)
+    print(diccionario_funciones[funcion][1][1].strip("[]")) #ayuda
+    print("-" * 6)
+    print("Parametros: {}".format(diccionario_funciones[funcion][0][0])) #parametros
+    print('----------------------------------------------')
     print()
 
 #-----------------------------------
@@ -57,21 +107,14 @@ def descripcion_individual(funcion, diccionario_funciones): #se activa en menu_i
     """
     print()
     print('-----------------------------------')
-    print('|Contadores Internos de la Funcion|:')
+    print('|Informacion Interna de la Funcion|:')
     print()
-    print('|Modulo:', diccionario_funciones[funcion][0])
-    print('|Cantidad de Parametros:', diccionario_funciones[funcion][1])
-    print('|Lineas de Codigo de la Funcion:', diccionario_funciones[funcion][2])
-    print('|Cantidad de Invocaciones a la Funcion:', diccionario_funciones[funcion][3])
-    print('|Cantidad de Returns:', diccionario_funciones[funcion][4])
-    print('|Cantidad de Ciclos If/elif:', diccionario_funciones[funcion][5])
-    print('|Cantidad de Ciclos For:', diccionario_funciones[funcion][6])
-    print('|Cantidad de Ciclos While:', diccionario_funciones[funcion][7])
-    print('|Cantidad de Breaks:', diccionario_funciones[funcion][8])
-    print('|Cantidad de Exits:', diccionario_funciones[funcion][9])
-    print('|Cantidad de Comentarios:', diccionario_funciones[funcion][10])
-    print('|Ayuda:', diccionario_funciones[funcion][11])
-    print('|Autor:', diccionario_funciones[funcion][12])
+    print('|Nombre: {}()'.format(funcion))
+    print('|Modulo:', diccionario_funciones[funcion][0][1])
+    print('|Parametros:', diccionario_funciones[funcion][0][0])
+    print("|Contenido: ")
+    for i in diccionario_funciones[funcion][0][1:]:
+        print("\t", i)
     print('-----------------------------------')
     print()
 
@@ -82,15 +125,8 @@ def consulta_general(lista_funciones, diccionario_funciones): #se activa en menu
         el nombre de la funcion a la que corresponda]
     """
     for funcion in lista_funciones:
-        print()
-        print('-----------------------------------')
-        print('|Funcion|: {}()'.format(funcion))
-        print()
-        print('|Info|:')
-        print('-------')
-        print(diccionario_funciones[funcion][13].replace('"', '').replace('[', '').replace(']', '\n').replace('\n (', '\n Parametros: ('))
-        print('-----------------------------------')
-        print()
+        consulta_individual(funcion, diccionario_funciones)
+        
 
 #-----------------------------------
 def descripcion_general(lista_funciones, diccionario_funciones): #se activa en menu_ingreso
@@ -99,27 +135,8 @@ def descripcion_general(lista_funciones, diccionario_funciones): #se activa en m
         el nombre de la funcion a la que corresponda]
     """
     for funcion in lista_funciones:
-        print()
-        print('-----------------------------------')
-        print('|Funcion|: {}()'.format(funcion))
-        print('|Contadores Internos de la Funcion|')
-        print()
-        print('|Modulo:', diccionario_funciones[funcion][0])
-        print('|Cantidad de Parametros:', diccionario_funciones[funcion][1])
-        print('|Lineas de Codigo de la Funcion:', diccionario_funciones[funcion][2])
-        print('|Cantidad de Invocaciones a la Funcion:', diccionario_funciones[funcion][3])
-        print('|Cantidad de Returns:', diccionario_funciones[funcion][4])
-        print('|Cantidad de Ciclos If/elif:', diccionario_funciones[funcion][5])
-        print('|Cantidad de Ciclos For:', diccionario_funciones[funcion][6])
-        print('|Cantidad de Ciclos While:', diccionario_funciones[funcion][7])
-        print('|Cantidad de Breaks:', diccionario_funciones[funcion][8])
-        print('|Cantidad de Exits:', diccionario_funciones[funcion][9])
-        print('|Cantidad de Comentarios:', diccionario_funciones[funcion][10])
-        print('|Ayuda:', diccionario_funciones[funcion][11])
-        print('|Autor:', diccionario_funciones[funcion][12])
-        print('-----------------------------------')
-        print()
-        
+        descripcion_individual(funcion, diccionario_funciones)
+
 #-----------------------------------        
 def imprimir_ayuda(lista_funciones, diccionario_funciones):
 
@@ -127,20 +144,9 @@ def imprimir_ayuda(lista_funciones, diccionario_funciones):
     for funcion in lista_funciones:
         archivo_imprimir.write('-----------------------------------\n')
         archivo_imprimir.write('|Funcion|: {}()\n'.format(funcion))
-        archivo_imprimir.write('|Contadores Internos de la Funcion|\n')
-        archivo_imprimir.write('|Modulo: {}\n'.format(diccionario_funciones[funcion][0]))
-        archivo_imprimir.write('|Cantidad de Parametros: {}\n'.format(diccionario_funciones[funcion][1]))
-        archivo_imprimir.write('|Lineas de Codigo de la Funcion: {}\n'.format(diccionario_funciones[funcion][2]))
-        archivo_imprimir.write('|Cantidad de Invocaciones a la Funcion: {}\n'.format(diccionario_funciones[funcion][3]))
-        archivo_imprimir.write('|Cantidad de Returns: {}\n'.format(diccionario_funciones[funcion][4]))
-        archivo_imprimir.write('|Cantidad de Ciclos If/elif: {}\n'.format(diccionario_funciones[funcion][5]))
-        archivo_imprimir.write('|Cantidad de Ciclos For: {}\n'.format(diccionario_funciones[funcion][6]))
-        archivo_imprimir.write('|Cantidad de Ciclos While: {}\n'.format(diccionario_funciones[funcion][7]))
-        archivo_imprimir.write('|Cantidad de Breaks: {}\n'.format(diccionario_funciones[funcion][8]))
-        archivo_imprimir.write('|Cantidad de Exits: {}\n'.format(diccionario_funciones[funcion][9]))
-        archivo_imprimir.write('|Cantidad de Comentarios: {}\n'.format(diccionario_funciones[funcion][10]))
-        archivo_imprimir.write('|Ayuda: {}\n'.format(diccionario_funciones[funcion][11]))
-        archivo_imprimir.write('|Autor: {}\n'.format(diccionario_funciones[funcion][12]))
+        archivo_imprimir.write("{}\n".format(diccionario_funciones[funcion][1][0].strip("[]"))) #autor
+        archivo_imprimir.write("{}\n".format(diccionario_funciones[funcion][1][1].strip("[]"))) #ayuda
+        archivo_imprimir.write("Parametros: {}\n".format(diccionario_funciones[funcion][0][0])) #parametros
         archivo_imprimir.write('-----------------------------------')
     archivo_imprimir.close()
     print()
@@ -195,6 +201,7 @@ def bloque_consulta_funciones():
     """[Autor: Augusto Carmona]
        [Ayuda: Ejecuta la funcion principal y hace display de los comandos]
     """
+    # aqui se imprimen los comandos que puede ejecutar el usuario en el programa
     print()
     print('-------------------------------------------------------------------------------------------------------------------')
     print(' COMANDOS:')
@@ -211,11 +218,12 @@ def bloque_consulta_funciones():
     print()
     print( '| ingrese: INTRO |: cuando desee terminar la ejecucion del programa') #comando f
     print('-------------------------------------------------------------------------------------------------------------------')
+    print()
     
+    # aqui se llaman a las funciones que modularizan el programa
+    lista_funciones, diccionario_funciones = extraer_informacion() #extrae los odatos necesarios para el funcionamiento del modulo
+    generador_tabla(lista_funciones) #genera la tabla
     print()
-    lista_funciones, diccionario_funciones = extractor_informacion() #lista funciones es efectivamente una lista
-    generador_tabla(lista_funciones)
-    print()
-    menu_ingreso(lista_funciones, diccionario_funciones)
+    menu_ingreso(lista_funciones, diccionario_funciones) #recibe los comandos que ingrese el usuario
 
 bloque_consulta_funciones()
