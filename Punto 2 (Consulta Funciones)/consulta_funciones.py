@@ -206,9 +206,9 @@ def bloque_consulta_funciones():
     print('-------------------------------------------------------------------------------------------------------------------')
     print(' COMANDOS:')
     print()
-    print( '| ? + (funcion) |: muestra la descripcion de la funcion ingresada, autor, modulo y parametros formales que espera') #comando a
+    print( '| ? + (funcion) |: muestra la informacion de autor, ayuda, y parametros que espera recibir la funcion ingresada') #comando a
     print()
-    print( '| # + (funcion) |: muestra todo lo relativo a la funcion') #comando b
+    print( '| # + (funcion) |: muestra todo lo relativo a la funcion (modulo, parametros y el contenido de sus lineas)') #comando b
     print()
     print( '| ?todo |: muestra la descripcion asociada al uso de cada funcion en el programa') #comando c
     print()
