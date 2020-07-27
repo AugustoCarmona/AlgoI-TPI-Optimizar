@@ -34,7 +34,7 @@ def realizar_merge(programas):
         archivos=[]
         for programa in programas:
             archivos.append(open("./data/"+programa[programa.rindex("\\"):programa.index(".")]+"_"+opciones[opcion][0]+".csv","r"))
-        codigo=open("./data/"+opciones[opcion][1]+".csv","w")
+        codigo=open(opciones[opcion][1]+".csv","w")
         unir_archivos(archivos, codigo)
         for archivo in archivos:
             archivo.close()

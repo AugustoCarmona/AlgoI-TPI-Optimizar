@@ -1,7 +1,7 @@
 def contador(archivo, lista_codigo, lista_comentarios):
-    """[Autor: Luciano Solis y Alejandro Guzman]
-    [Ayuda: Esta funcion recibe una lista anidada y un archivo vacio.Lo que hace esta funcion es juntar informacion
-     de la cantidad de veces que se utiliza cada funcion, como asi tambien los comentarios, y esa informacion la guarda en un archivo]
+    """[Autor: Alejandro Guzman, Gastón Mondín y Luciano Solis]
+    [Ayuda: Esta funcion recibe una lista anidada y un archivo vacio. Lo que hace esta funcion es juntar información
+    de la cantidad de veces que se utiliza cada función, como así tambien los comentarios, y esa información la guarda en un archivo.]
     """   
     for posicion in range(len(lista_codigo)):
         nombre_funcion=nombre_modulo=""
@@ -58,8 +58,9 @@ def contador(archivo, lista_codigo, lista_comentarios):
         archivo.write("\n")
 
 def armado_listas_anidadas(merge_fuente_unico):
-    """[Autor:Luciano Solis]
-        [Ayuda: Lo que hace esta funcion es recibir un archivo que contiene codigo y devuelve una lista anidada con toda la informacion del archivo]
+    """[Autor: Luciano Solis]
+    [Ayuda: Lo que hace esta función es recibir un archivo que contiene código y devuelve una lista anidada con toda la información
+    del archivo.]
     """
     linea=merge_fuente_unico.readline().strip("\n").split(";")
     lista_final=[]
@@ -69,21 +70,22 @@ def armado_listas_anidadas(merge_fuente_unico):
     return lista_final
 
 def cantidad_de_invocaciones(lista_codigo,nombre_funcion,posicion):
-    """[Autor:Luciano Solis]
-        [Ayuda: Esta funcion recibe una lista anidada, un elemento de una sublista que es una funcion y una posicion de la lista anidada
-        y lo que devuelve es la cantidad de veces que se invoco al elemento funcion en la lista anidada]
+    """[Autor: Alejandro Guzman, Gastón Mondín y Luciano Solis]
+    [Ayuda: Esta función recibe una lista anidada, un elemento de una sublista que es una función y una posición de la lista anidada
+    y lo que devuelve es la cantidad de veces que se invocó al elemento funcion en la lista anidada.]
     """
     cont_invocaciones=0
     for posicion_2 in range(len(lista_codigo)):
         for caracter_2 in range(len(lista_codigo[posicion_2])):
-            if posicion!=posicion_2 and ("."+nombre_funcion+"(" in lista_codigo[posicion_2][caracter_2] or " "+nombre_funcion+"(" in lista_codigo[posicion_2][caracter_2] or "("+nombre_funcion+"(" in lista_codigo[posicion_2][caracter_2] or "="+nombre_funcion+"(" in lista_codigo[posicion_2][caracter_2]):
-                cont_invocaciones+=1
+            if posicion!=posicion_2 and nombre_funcion+"(" in lista_codigo[posicion_2][caracter_2]:
+                if lista_codigo[posicion_2][caracter_2][lista_codigo[posicion_2][caracter_2].index(nombre_funcion)-1].isalnum()==False and lista_codigo[posicion_2][caracter_2][lista_codigo[posicion_2][caracter_2].index(nombre_funcion)-1]!="_":
+                    cont_invocaciones+=1
     return cont_invocaciones
 
 
 def imprimir_diccionario(diccionario):
-    """[Autor:Luciano Solis]
-        [Ayuda: Recibe el diccionario con los datos cargados y los muestra]
+    """[Autor: Luciano Solis]
+    [Ayuda: Recibe el diccionario con los datos cargados y los muestra.]
     """
     for clave in diccionario:
         print("{}: {}".format(clave, diccionario[clave]))
@@ -91,8 +93,8 @@ def imprimir_diccionario(diccionario):
         
 def main():
     archivo=open("panel_general.csv","w")
-    merge_fuente_unico=open("./data/fuente_unico.csv","r")
-    merge_comentarios=open("./data/comentarios.csv","r")
+    merge_fuente_unico=open("fuente_unico.csv","r")
+    merge_comentarios=open("comentarios.csv","r")
     lista_fuente_unico=armado_listas_anidadas(merge_fuente_unico)
     lista_comentarios=armado_listas_anidadas(merge_comentarios)
     merge_fuente_unico.close()

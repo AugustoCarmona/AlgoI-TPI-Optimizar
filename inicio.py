@@ -49,9 +49,9 @@ def analizar_linea(linea, programa, codigo, comentarios, funcion_actual, string,
         codigo[funcion_actual].append(linea[linea.index("("):linea.index(":")])
         codigo[funcion_actual].append(programa[programa.rindex("\\")+1:])
     elif funcion_actual!="" and linea!="":
-        if '"""' in linea and comentado:
+        if ('"""' in linea or "'''" in linea) and comentado:
             comentado=False
-        elif '"""' in linea and not comentado:
+        elif ('"""' in linea or "'''" in linea) and not comentado:
             comentado=True
             if "[Autor:" in linea:
                 comentarios[funcion_actual].append(linea[linea.index("["):])
@@ -78,7 +78,6 @@ def recorrer_programas(programas):
         codigo={}
         comentarios={}
         with open(programa,"r") as archivo:
-            #recorrer_lineas(archivo, programa, codigo, comentarios)
             funcion_actual=""
             string=""
             comentado=False
