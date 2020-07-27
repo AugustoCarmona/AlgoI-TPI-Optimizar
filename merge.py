@@ -7,7 +7,7 @@ def grabar_archivo(archivo, linea):
 
 def unir_archivos(archivos, archivofinal):
     """[Autor: Gastón Mondín]
-    [Ayuda: Une todos los archivos en uno solo mediante un merge.]
+       [Ayuda: Une todos los archivos en uno solo mediante un merge.]
     """
     funciones=[]
     for archivo in archivos:

@@ -1,8 +1,8 @@
-import merge, panel
+import merge, panel, consulta, analizador
 
 def crear_lista():
     """[Autor: Gastón Mondín]
-    [Ayuda: Crea una lista con las ubicaciones de cada uno de los programas que se encuentran en "programas.txt"]
+       [Ayuda: Crea una lista con las ubicaciones de cada uno de los programas que se encuentran en "programas.txt"]
     """
     with open("programas.txt","r") as archivo_programas:
         programas=[]
@@ -14,7 +14,7 @@ def crear_lista():
 
 def generar_archivos_csv(programa, codigo, comentarios):
     """[Autor: Gastón Mondín]
-    [Ayuda: Crea los archivos csv en base a los diccionarios con código y comentarios que se generaron.]
+       [Ayuda: Crea los archivos csv en base a los diccionarios con código y comentarios que se generaron.]
     """
     with open("./data/"+programa[programa.rindex("\\")+1:programa.index(".")]+"_codigo.csv","w") as archivo_codigo:
         for items in sorted(codigo):
@@ -31,8 +31,8 @@ def generar_archivos_csv(programa, codigo, comentarios):
 
 def analizar_linea(linea, programa, codigo, comentarios, funcion_actual, string, comentado):
     """[Autor: Gastón Mondín]
-    [Ayuda: Analiza una línea del programa que se está recorriendo, haciendo los cambios de línea necesarios
-    y guardando todos los datos en diccionarios.]
+       [Ayuda: Analiza una línea del programa que se está recorriendo, haciendo los cambios de línea necesarios
+        y guardando todos los datos en diccionarios.]
     """
     if linea.count("    ")==0 and linea!="\n":
         funcion_actual=""
@@ -72,7 +72,7 @@ def analizar_linea(linea, programa, codigo, comentarios, funcion_actual, string,
 
 def recorrer_programas(programas):
     """[Autor: Gastón Mondín]
-    [Ayuda: Recorre cada uno de los programas de la lista creada.]
+       [Ayuda: Recorre cada uno de los programas de la lista creada.]
     """
     for programa in programas:
         codigo={}
@@ -87,21 +87,26 @@ def recorrer_programas(programas):
 
 def menu_de_opciones():
     """[Autor: Gastón Mondín]
-    [Ayuda: Menú de opciones encargado de llamar a cada de los puntos.]
+       [Ayuda: Menú de opciones encargado de llamar a cada uno de los puntos.]
     """
-    print("-----MENÚ DE OPCIONES-----\n")
-    print("1. Panel General de Funciones")
-    print("2. Consulta de Funciones")
-    print("3. Analizador de Reutilización de Código")
-    print("4. Árbol de Invocación")
-    print("5. Información por Desarrollador")
-    print("6. Salir")
+    print("\n-----MENÚ DE OPCIONES-----\n")
+    print("1. Panel General de Funciones\n2. Consulta de Funciones\n3. Analizador de Reutilización de Código")
+    print("4. Árbol de Invocación\n5. Información por Desarrollador\n6. Salir")
     opcion=input("Ingrese una opción: ")
-    while not opcion.isdigit() or int(opcion)<1 or int(opcion)>6:
-        print("Valor ingresado incorrecto, intente de nuevo.")
-        opcion=input("Ingrese una opción: ")
-    if opcion=="1":
-        panel.main()
+    while opcion!="6":
+        if not opcion.isdigit() or int(opcion)<1 or int(opcion)>6:
+            opcion=input("Valor ingresado incorrecto, intente de nuevo: ")
+        else:
+            if opcion=="1":
+                panel.main()
+            elif opcion=="2":
+                consulta.main()
+            elif opcion=="3":
+                analizador.main()
+            print("\n-----MENÚ DE OPCIONES-----\n")
+            print("1. Panel General de Funciones\n2. Consulta de Funciones\n3. Analizador de Reutilización de Código")
+            print("4. Árbol de Invocación\n5. Información por Desarrollador\n6. Salir")
+            opcion=input("Ingrese una opción: ")
 
 def main():
     programas=crear_lista()
