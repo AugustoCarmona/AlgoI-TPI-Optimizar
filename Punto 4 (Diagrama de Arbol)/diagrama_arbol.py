@@ -124,7 +124,7 @@ def generar_diagrama(diccionario):
                 print()
                 print("\t--> {}({})".format(funcion, diccionario[funcion][-1][0]))
             
-                if (diccionario[funcion][0] != "") and (funcion in llamados_principales):
+                if (diccionario[funcion][0] != ""):
                         for elemento in diccionario[funcion][0]:
                             espacio = "\t\t"
                             ajuste= espacio + "--> {}({})"
