@@ -1,3 +1,6 @@
+#extraccion de la informacion:
+#------------------------------------------------------------
+#------------------------------------------------------------
 def obtener_informacion(): #invocada desde main()
     """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: abre el archivo fuente_unico y extrae el codigo de cada funcion y su nombre el cual
@@ -8,8 +11,9 @@ def obtener_informacion(): #invocada desde main()
     linea = codigos.readline().split(";")
     funciones = {}
     
-    while(linea != [""]): #extrae el crudo del archivo fuente_unico.csv
-        funciones[linea[0]]=linea[3:]
+    #extrae el crudo del archivo fuente_unico.csv
+    while(linea != [""]):
+        funciones[linea[0]] = linea[3:]
         linea = codigos.readline().split(";")
     codigos.close()
 
@@ -42,6 +46,7 @@ def evaluador_invocaciones(funcion, funciones, llamados, cantidad_lineas): #invo
     """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: extrae cuantas invoaciones genra cada funcion]
     """
+    
     for linea in funciones:
         index = 0
         
@@ -51,15 +56,25 @@ def evaluador_invocaciones(funcion, funciones, llamados, cantidad_lineas): #invo
             seccion = 0
         
             while seccion < len(sub_modulos):
-                if (funcion == sub_modulos[seccion]) or ((funcion in sub_modulos[seccion]) and ("." in sub_modulos[seccion])):
+                if funcion in sub_modulos[seccion]:
+                    lugar_primera_letra_funcion = sub_modulos[seccion].find(funcion)
+                if ((funcion == sub_modulos[seccion]) or ((funcion in sub_modulos[seccion]) and (sub_modulos[seccion].find(funcion)>0) and ("." == sub_modulos[seccion][sub_modulos[seccion].find(funcion)-1]) and (sub_modulos[seccion][lugar_primera_letra_funcion + len(funcion)] == "("))):
                     if not linea in llamados:
                         llamados[linea] = [[funcion]]
                     else: llamados[linea][0].append(funcion)
         
+                elif sub_modulos[seccion].find(funcion) > 0:
+                    lugar_primera_letra_funcion = sub_modulos[seccion].find(funcion)
+                    if (lugar_primera_letra_funcion > 0) and (not (sub_modulos[seccion][lugar_primera_letra_funcion - 1].isalnum) and (sub_modulos[seccion][lugar_primera_letra_funcion + len(funcion)] == "") and (sub_modulos[seccion][lugar_primera_letra_funcion - 1] != "_")):
+                        if not linea in llamados:
+                            llamados[linea] = [[funcion]]
+                        else: llamados[linea][0].append(funcion)
+
+
                 elif ("(" in sub_modulos[seccion]):
                     lugar_parentesis = sub_modulos[seccion].find("(")
                     lugar_primera_letra_funcion = sub_modulos[seccion].find(funcion)
-                    if (lugar_primera_letra_funcion > 0) and (not (sub_modulos[seccion][lugar_primera_letra_funcion - 1].isalpha) or (sub_modulos[seccion][lugar_primera_letra_funcion - 1] != "_")):
+                    if (lugar_primera_letra_funcion > 0) and (not (sub_modulos[seccion][lugar_primera_letra_funcion - 1].isalnum) and (sub_modulos[seccion][lugar_primera_letra_funcion + len(funcion)] == "(") and (sub_modulos[seccion][lugar_primera_letra_funcion - 1] != "_")):
                         if (sub_modulos[seccion][lugar_parentesis] == "(" ):
                             if not linea in llamados:
                                 llamados[linea] = [[funcion]]
@@ -113,7 +128,7 @@ def generar_diagrama(diccionario):
         [Ayuda: busca en el diccionario la informacion de invocaciones y cantidad de lineas sobre cada funcion
         y la estructura en modo de diagrama de arbol]
     """
-    llamados_secundarios , llamados_principales = identificar_funcion_principal(diccionario)
+    llamados_secundarios = identificar_funcion_principal(diccionario)
 
     for clave in diccionario: 
         if (diccionario[clave][0] != "") and (not clave in llamados_secundarios):
@@ -158,12 +173,12 @@ def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama(
                 if not funcion in fue_llamada_luego:
                     fue_llamada_luego.append(funcion)
     
-    return fue_llamada_luego,llamados_principal
+    return fue_llamada_luego
                         
 def main_arbol():
     """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: divide el programa en dos bloques principales, uno que extrae la
         informacion del archivo fuente_unico.csv y otro que la imprime como un diagrama de arbol]
     """
-    diccionario_funciones = obtener_informacion()
-    imprimir(diccionario_funciones)
+    diccionario_funciones = obtener_informacion() #extraccion de informacion
+    imprimir(diccionario_funciones) #impresion del diagrama
