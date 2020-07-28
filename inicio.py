@@ -1,4 +1,4 @@
-import merge, panel, consulta, analizador
+import merge, panel, consulta, analizador, arbol, informacion
 
 def crear_lista():
     """[Autor: Gastón Mondín]
@@ -103,6 +103,10 @@ def menu_de_opciones():
                 consulta.main()
             elif opcion=="3":
                 analizador.main()
+            elif opcion=="4":
+                arbol.main()
+            elif opcion=="5":
+                informacion.main()
             print("\n-----MENÚ DE OPCIONES-----\n")
             print("1. Panel General de Funciones\n2. Consulta de Funciones\n3. Analizador de Reutilización de Código")
             print("4. Árbol de Invocación\n5. Información por Desarrollador\n6. Salir")

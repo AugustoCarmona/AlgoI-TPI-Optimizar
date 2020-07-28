@@ -1,13 +1,19 @@
 def leer_archivo(archivo):
+    """[Autor: Gastón Mondín]
+       [Ayuda: Lee una línea del archivo.]
+    """
     linea=archivo.readline().strip("\n")
     return linea if linea else ""
 
 def grabar_archivo(archivo, linea):
+    """[Autor: Gastón Mondín]
+       [Ayuda: Graba una línea del archivo.]
+    """
     archivo.write(linea+"\n")
 
 def unir_archivos(archivos, archivofinal):
     """[Autor: Gastón Mondín]
-       [Ayuda: Une todos los archivos en uno solo mediante un merge.]
+       [Ayuda: Une todos los archivos en uno solo.]
     """
     funciones=[]
     for archivo in archivos:
@@ -29,6 +35,9 @@ def unir_archivos(archivos, archivofinal):
             del(archivos[j])
 
 def realizar_merge(programas):
+    """[Autor: Gastón Mondín]
+       [Ayuda: Función principal del programa encargado de realizar el merge.]
+    """
     opciones={"Código":["codigo","fuente_unico"],"Comentarios":["comentarios","comentarios"]}
     for opcion in opciones:
         archivos=[]
