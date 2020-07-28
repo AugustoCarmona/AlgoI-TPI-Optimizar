@@ -9,16 +9,8 @@ _El punto 4 está en el archivo "arbol.py".
 _El punto 5 está en el archivo "informacion.py".
 _En "programas.txt" se deben poner los paths absolutos de los programas con los que se quiere trabajar.
 
-****************** Interpretacion de los puntos: ******************
-
-Inicio:
-
-Punto 1: 
+Aclaraciones en las interpretaciones de los puntos:
 
 Punto 2: El comando imprimir?todo pide toda la informacion de ayuda de todas funciones y por "todo lo relativo a la función" para los comandos numeral decidimos mostrar nombre, módulo, parámetros y contenido de cada línea de cada función.
 
 Punto 3: Por total invocaciones se entiende como la cantidad de veces que cada función fue invocada.
-
-Punto 4:
-
-Punto 5:
