@@ -12,5 +12,4 @@ _En "programas.txt" se deben poner los paths absolutos de los programas con los 
 Aclaraciones en las interpretaciones de los puntos:
 
 Punto 2: El comando imprimir?todo pide toda la informacion de ayuda de todas funciones y por "todo lo relativo a la función" para los comandos numeral decidimos mostrar nombre, módulo, parámetros y contenido de cada línea de cada función.
-
 Punto 3: Por total invocaciones se entiende como la cantidad de veces que cada función fue invocada.

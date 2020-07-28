@@ -16,7 +16,7 @@ def tabla(lista_funciones):
 
     linea = " "
     for j in range(5):
-        linea += "_" * (caracteres+3)
+        linea += "_" + "_" * caracteres + "_ "
     print(linea)
     
     index = 0
