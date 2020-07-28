@@ -111,6 +111,7 @@ def diccionario_unificado(llamados, cantidad_lineas): #invocada desde procesar_d
     
     return lista_final
 
+#impresion de la informacin extraida:
 #--------------------------------------------------------------------------------------------------------------#
 #--------------------------------------------------------------------------------------------------------------#
 def imprimir(diccionario):
@@ -122,7 +123,7 @@ def imprimir(diccionario):
     generar_diagrama(diccionario)
     print("===============================================================================\n")
 
-#---------------------------------#
+#------------------------------------------------------------
 def generar_diagrama(diccionario):
     """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: busca en el diccionario la informacion de invocaciones y cantidad de lineas sobre cada funcion
@@ -174,8 +175,16 @@ def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama(
                     fue_llamada_luego.append(funcion)
     
     return fue_llamada_luego
+<<<<<<< Updated upstream:diagrama_arbol.py
                         
 def main():
+=======
+
+#--------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------- bloque principal -------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------
+def main_arbol():
+>>>>>>> Stashed changes:arbol.py
     """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: divide el programa en dos bloques principales, uno que extrae la
         informacion del archivo fuente_unico.csv y otro que la imprime como un diagrama de arbol]
