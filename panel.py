@@ -91,7 +91,7 @@ def cantidad_de_invocaciones(lista_codigo,nombre_funcion,posicion):
     for posicion_2 in range(len(lista_codigo)):
         for caracter_2 in range(len(lista_codigo[posicion_2])):
             if posicion!=posicion_2 and nombre_funcion+"(" in lista_codigo[posicion_2][caracter_2]:
-                if lista_codigo[posicion_2][caracter_2][lista_codigo[posicion_2][caracter_2].index(nombre_funcion)-1].isalnum()==False and lista_codigo[posicion_2][caracter_2][lista_codigo[posicion_2][caracter_2].index(nombre_funcion)-1]!="_":
+                if lista_codigo[posicion_2][caracter_2][lista_codigo[posicion_2][caracter_2].index(nombre_funcion+"(")-1].isalnum()==False and lista_codigo[posicion_2][caracter_2][lista_codigo[posicion_2][caracter_2].index(nombre_funcion+"(")-1]!="_":
                     cont_invocaciones+=1
     return cont_invocaciones
 

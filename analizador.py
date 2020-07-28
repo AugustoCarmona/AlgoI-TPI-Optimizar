@@ -50,7 +50,7 @@ def invocaciones_de_funcion_a_funciones(linea_2,lista_solo_funciones,lista_merge
         cantidad=0
         for dato_3 in range(len(lista_merge[linea_2])):
             if dato_3!=0:
-                if funcion+"(" in lista_merge[linea_2][dato_3] and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1]!="_" and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1].isalnum()== False:
+                if funcion+"(" in lista_merge[linea_2][dato_3] and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion+"(")-1]!="_" and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion+"(")-1].isalnum()== False:
                     cantidad +=1                        
         if cantidad==0:
             cantidad=""
@@ -72,7 +72,7 @@ def devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,tota
         for dato_2 in range(len(lista_merge[linea_2])):
             if dato_2==0: # si se cumple esta condicion significa que esta en la posicion del nombre la funcion
                 invocador=lista_merge[linea_2][dato_2]
-            elif nombre_funcion+"(" in lista_merge[linea_2][dato_2] and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1]!="_" and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1].isalnum()== False:
+            elif nombre_funcion+"(" in lista_merge[linea_2][dato_2] and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion+"(")-1]!="_" and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion+"(")-1].isalnum()== False:
                 cont_invocaciones="x"#cont_invocaciones+=1 #revisar
                 cont_total_invocaciones+=1
             if cont_invocaciones==0 and dato_2==len(lista_merge[linea_2])-1:
