@@ -17,7 +17,7 @@ def tabla(lista_funciones):
     linea = " "
     for j in range(5):
         linea += "_" * (caracteres+3)
-    print('\t\t', linea)
+    print(linea)
     
     index = 0
     
@@ -30,9 +30,9 @@ def tabla(lista_funciones):
             else:
                 linea += " " + lista_funciones[index] + " " * (caracteres-len(lista_funciones[index])+1) + "|"
             index+=1
-        print('\t\t', linea)
+        print(linea)
         
         linea = "|"
         for j in range(5):
             linea += "_" * (caracteres+2) + "|"
-        print('\t\t', linea)
+        print(linea)

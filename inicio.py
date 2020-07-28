@@ -98,15 +98,15 @@ def menu_de_opciones():
             opcion=input("Valor ingresado incorrecto, intente de nuevo: ")
         else:
             if opcion=="1":
-                panel.main()
+                panel.main_panel()
             elif opcion=="2":
-                consulta.main()
+                consulta.main_consulta()
             elif opcion=="3":
-                analizador.main()
+                analizador.main_analizador()
             elif opcion=="4":
-                arbol.main()
+                arbol.main_arbol()
             elif opcion=="5":
-                informacion.main()
+                informacion.main_informacion()
             print("\n-----MENÚ DE OPCIONES-----\n")
             print("1. Panel General de Funciones\n2. Consulta de Funciones\n3. Analizador de Reutilización de Código")
             print("4. Árbol de Invocación\n5. Información por Desarrollador\n6. Salir")

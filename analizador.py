@@ -50,7 +50,7 @@ def invocaciones_de_funcion_a_funciones(linea_2,lista_solo_funciones,lista_merge
         cantidad=0
         for dato_3 in range(len(lista_merge[linea_2])):
             if dato_3!=0:
-                if funcion in lista_merge[linea_2][dato_3] and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1]!="_" and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1].isalnum()== False:
+                if funcion+"(" in lista_merge[linea_2][dato_3] and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1]!="_" and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1].isalnum()== False:
                     cantidad +=1                        
         if cantidad==0:
             cantidad=""
@@ -72,7 +72,7 @@ def devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,tota
         for dato_2 in range(len(lista_merge[linea_2])):
             if dato_2==0: # si se cumple esta condicion significa que esta en la posicion del nombre la funcion
                 invocador=lista_merge[linea_2][dato_2]
-            elif nombre_funcion in lista_merge[linea_2][dato_2] and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1]!="_" and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1].isalnum()== False:
+            elif nombre_funcion+"(" in lista_merge[linea_2][dato_2] and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1]!="_" and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1].isalnum()== False:
                 cont_invocaciones="x"#cont_invocaciones+=1 #revisar
                 cont_total_invocaciones+=1
             if cont_invocaciones==0 and dato_2==len(lista_merge[linea_2])-1:
@@ -122,10 +122,20 @@ def tamaño_primer_columna(lista_solo_funciones):
 
 def tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones):
     """[Autor: Luciano Solis]
-       [Ayuda: Esta función lo que hace es encontrar el valor más grande de la última fila ya que esta nos va a dar el tamaño
-        que se necesita para todas las columnas, excepto la primer columna que es de nombre de funciones.]
+       [Ayuda: Esta función lo que hace es encontrar el valor más grande que se encuentra entre el numero de funciones que hay y
+        ultima_fila, ya que esta nos va a dar el tamaño que se necesita para todas las columnas, excepto la primer columna que es
+        de nombre de funciones]
     """
+    maximo_numero_funcion=0
+    for numero_funcion in range(len(lista_solo_funciones)): # es para encontrar la palabra mas grande 
+        if numero_funcion > maximo_numero_funcion:
+            maximo_numero_funcion=numero_funcion
+    
     maximo_columna_datos=max(ultima_fila) #con el max encuentro el valor mas grande que pertenece a ultima_fila, y esta como dato tiene la suma total de las invocaciones que se le hace a cada funcion
+    
+    if maximo_numero_funcion> maximo_columna_datos: #comparo entre las dos variables para saber quien es la palabra mas grande
+        maximo_columna_datos=maximo_numero_funcion
+        
     maximo_columna_datos=str(maximo_columna_datos)
     contador_columna_de_datos=0# este contador va a guardar el valor del tamaño de las columnas,excepto la primer columna.
     for i in ultima_fila:
@@ -133,6 +143,7 @@ def tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones):
         while len(i)<len(maximo_columna_datos):
             i+=" "
         contador_columna_de_datos+=len(" "+i+"|")# con esto tengo todo el tamaño de las columnas de datos, menos la primer columna
+    
     return contador_columna_de_datos, maximo_columna_datos #este el tamañano maximo de las columnas de los datos
 
 def tamaño_fila(maximo_primer_columna,contador_columna_de_datos):
@@ -233,7 +244,7 @@ def procesar_total_invocaciones(archivo,lista_solo_funciones,maximo_primer_colum
     procesar_filas_para_funciones(total_invocaciones_a_funciones, total_invocaciones_de_funciones,archivo, maximo_primer_columna,maximo_columna_datos)
     procesar_ultima_fila(archivo,maximo_primer_columna,maximo_columna_datos,ultima_fila)
 
-def main():
+def main_analizador():
     archivo=open("analizador.txt","w")                      
     merge=open("fuente_unico.csv","r")
     lista_merge=armado_listas(merge)

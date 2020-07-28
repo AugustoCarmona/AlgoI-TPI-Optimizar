@@ -69,8 +69,8 @@ def generador_tabla(lista_funciones): #se activa en main
     """
     nueva_lista_funciones = []
 
-    print("\t\t\t FUNCIONES:")
-    print("\t\t\t", "-" * 10)
+    print("FUNCIONES:")
+    print("-" * 10)
     for i in lista_funciones:
         i += "()"
         nueva_lista_funciones.append(i)
@@ -191,7 +191,7 @@ def menu_ingreso(lista_funciones, diccionario_funciones): #se activa en main
             print()
             ing = input(" Usted ha ingresado una orden incorrecta, por favor reingrese: ")
 
-def main():
+def main_consulta():
     """[Autor: Augusto Carmona]
        [Ayuda: Ejecuta la función principal y hace display de los comandos.]
     """

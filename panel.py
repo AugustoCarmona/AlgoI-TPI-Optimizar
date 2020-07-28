@@ -175,7 +175,7 @@ def grabar_archivo(diccionario, archivo, posicion):
             archivo.write(str(diccionario[campo]))
     archivo.write("\n") 
 
-def main():
+def main_panel():
     archivo=open("panel_general.csv","w")
     merge_fuente_unico=open("fuente_unico.csv","r")
     merge_comentarios=open("comentarios.csv","r")

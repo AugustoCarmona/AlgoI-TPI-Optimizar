@@ -160,7 +160,7 @@ def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama(
     
     return fue_llamada_luego,llamados_principal
                         
-def main():
+def main_arbol():
     """ [Autor: Augusto Carmona, Jose Piñeiro]
         [Ayuda: divide el programa en dos bloques principales, uno que extrae la
         informacion del archivo fuente_unico.csv y otro que la imprime como un diagrama de arbol]

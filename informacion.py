@@ -1,4 +1,4 @@
-def leo_comentario ():
+def leo_comentario():
     """ [Autor: Jose Piñeiro]
         [Ayuda: Esta función señala qué autor hizo qué función.]
     """
@@ -17,7 +17,7 @@ def leo_comentario ():
 
     return diccionario_De_autores
 
-def leo_fuente ():
+def leo_fuente():
     """ [Autor: Jose Piñeiro]
         [Ayuda: Esta función devuelve un diccionario con las funciones y su cantidad de líneas de código.]
     """
@@ -29,7 +29,7 @@ def leo_fuente ():
             linea = archivo.readline().split(";")
     return diccionario_De_funciones
 
-def uno_fuente_comentario (funciones,autores):
+def uno_fuente_comentario(funciones,autores):
     """ [Autor: Jose Piñeiro]
         [Ayuda: Esta función une a las funciones con su cantidad de líneas de código]
     """
@@ -47,7 +47,7 @@ def uno_fuente_comentario (funciones,autores):
             index += 1
     return diccionario_final
 
-def suma_funciones ():
+def suma_funciones():
     """ [Autor: Jose Piñeiro]
         [Ayuda: Esta función mantiene la cuenta de cantidad de código y cantidad de funciones.]
     """
@@ -61,12 +61,29 @@ def suma_funciones ():
             linea = archivo.readline().split(";")
     return numero_renglones,numero_funciones
 
-def imprimir (diccionario,total_lineas,funciones_totales,texto_participacion):
+def incluir_porcenta(diccionario,total_lineas):
+    """ [Autor: Jose Piñeiro]
+        [Ayuda: Esta función hagarra el porcentaje de cada funcion y se lo introduce al final.]
+    """
+    diccionario_con_porcentaje = diccionario.copy()
+    for autor in diccionario:
+        cantidad_lineas = 0
+        for funcion in range(0,len(diccionario[autor])):
+            cantidad_lineas += diccionario[autor][funcion][1]
+        diccionario_con_porcentaje[autor].append(cantidad_lineas)
+    lista_ordenado_porcentaje = sorted(diccionario_con_porcentaje.items(), key=lambda item: item[-1])
+    diccionario_ordenado_porcentaje = {}
+    for funcion in range(0,len(lista_ordenado_porcentaje)):
+        diccionario_ordenado_porcentaje[lista_ordenado_porcentaje[funcion][0]] = lista_ordenado_porcentaje[funcion][1:2]
+    return diccionario_ordenado_porcentaje
+
+def imprimir(diccionario,total_lineas,funciones_totales,texto_participacion):
     """ [Autor: Jose Piñeiro]
         [Ayuda: Esta función imprime el diccionario de autores de la forma pedida y da el porcentaje.]
     """
     print("\n    Informe de Desarrollo por Autor")
     texto_participacion.writelines("    Informe de Desarrollo por Autor\n")
+    diccionario_orden = incluir_porcenta(diccionario,total_lineas)
     for autor in diccionario:
         print ("\nAutor: {}\n".format(autor))
         texto_participacion.writelines("\nAutor: {}\n\n".format(autor))
@@ -74,7 +91,7 @@ def imprimir (diccionario,total_lineas,funciones_totales,texto_participacion):
         texto_participacion.writelines("\tFuncion{:>22}\n".format("Lineas"))
         print ("\t---------------------------------------")
         texto_participacion.writelines("\t---------------------------------------\n")
-        lineas_imprimir(diccionario,autor,total_lineas,texto_participacion)
+        lineas_imprimir(diccionario_orden,autor,total_lineas,texto_participacion)
     print("\nTotal:{:>3} Funciones - Lineas {:>6}\n".format(funciones_totales, total_lineas))
     texto_participacion.writelines("\nTotal:{:>3} Funciones - Lineas {:>6}\n\n".format(funciones_totales, total_lineas))
 
@@ -83,24 +100,15 @@ def lineas_imprimir(diccionario,autor,total_lineas,texto_participacion):
         [Ayuda: Esta funcón imprime el o los renglones de las funciones en las que trabajó cada autor
         y también da el porcentaje de trabajo.]
     """
-    cantidad_funciones = 0
-    cantidad_lineas = 0
-    for funcion in range(0,len(diccionario[autor])):
-        funcion_nombre=0
-        numeros=1
-        while numeros < 2:
-            cantidad_funciones += 1
-            cantidad_lineas += int(diccionario[autor][funcion][numeros])
-            print("\t{:<22}{:>5}".format(diccionario[autor][funcion][funcion_nombre], diccionario[autor][funcion][numeros]))
-            texto_participacion.writelines("\t{:<22}{:>5}\n".format(diccionario[autor][funcion][funcion_nombre], diccionario[autor][funcion][numeros]))
-            if numeros < 2:   
-                funcion += 1
-                numeros += 1
-    porcentaje = cantidad_lineas /  total_lineas*100
-    print("\t{} Funciones - Lineas\t{:>3}   {}%\n".format(cantidad_funciones, cantidad_lineas, int(porcentaje)))
-    texto_participacion.writelines("\t{} Funciones - Lineas\t{:>3}   {}%\n\n".format(cantidad_funciones, cantidad_lineas, int(porcentaje)))
+    for funcion in range(0,len(diccionario[autor][0])-1):
+        cantidad_funciones = len(diccionario[autor][0])-1
+        print("\t{:<22}{:>5}".format(diccionario[autor][0][funcion][0], diccionario[autor][0][funcion][1]))
+        texto_participacion.writelines("\t{:<22}{:>5}\n".format(diccionario[autor][0][funcion][0], diccionario[autor][0][funcion][1]))
+    porcentaje = diccionario[autor][0][-1] /  total_lineas*100
+    print("\t{} Funciones - Lineas\t{:>3}   {}%\n".format(cantidad_funciones, diccionario[autor][0][-1], int(porcentaje)))
+    texto_participacion.writelines("\t{} Funciones - Lineas\t{:>3}   {}%\n\n".format(cantidad_funciones, diccionario[autor][0][-1], int(porcentaje)))
 
-def main():
+def main_informacion():
     """ [Autor: Jose Piñeiro]
         [Ayuda: Esta función llama al resto de las funciones.]
     """
