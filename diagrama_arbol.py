@@ -127,20 +127,18 @@ def generar_diagrama(diccionario):
                             ajuste= espacio + "--> {}({})"
                             print(ajuste.format(elemento, diccionario[elemento][-1][0]))
                             print()
-            
                             imprimir_exponencial(diccionario,elemento,espacio)
 #------------------------------------------------------------
 
 def imprimir_exponencial(diccionario,elemento,espacio):
-    while diccionario[elemento][0] != "":
-        if diccionario[elemento][0] != "":
-            espacio += "\t"
-            ajuste= espacio + "--> {}({})"
-            for seudo_elemento in diccionario[elemento][0]:
-                print(ajuste.format(seudo_elemento, diccionario[seudo_elemento][-1][0]))
-                print()
+    if not diccionario[elemento][0] == "":
+        espacio += "\t"
+        ajuste= espacio + "--> {}({})"
+        for seudo_elemento in diccionario[elemento][0]:
+            print(ajuste.format(seudo_elemento, diccionario[seudo_elemento][-1][0]))
+            print()
+            if diccionario[seudo_elemento][0] != "":
                 imprimir_exponencial(diccionario,seudo_elemento,espacio)
-            elemento = seudo_elemento
 #------------------------------------------------------------
 
 def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama()
