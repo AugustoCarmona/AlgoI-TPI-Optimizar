@@ -112,8 +112,7 @@ def generar_diagrama(diccionario):
         [Ayuda: busca en el diccionario la informacion de invocaciones y cantidad de lineas sobre cada funcion
         y la estructura en modo de diagrama de arbol]
     """
-    llamados_secundarios , llamados_principales = identificar_funcion_principal(diccionario)
-
+    llamados_secundarios= identificar_funcion_principal(diccionario)
     for clave in diccionario: 
         if (diccionario[clave][0] != "") and (not clave in llamados_secundarios):
             print("{}({})".format(clave, diccionario[clave][-1][0]))
@@ -129,15 +128,19 @@ def generar_diagrama(diccionario):
                             print(ajuste.format(elemento, diccionario[elemento][-1][0]))
                             print()
             
-                            while diccionario[elemento][0] != "":
-                                if diccionario[elemento][0] != "":
-                                    espacio += "\t"
-                                    ajuste= espacio + "--> {}({})"
-                                    for seudo_elemento in diccionario[elemento][0]:
-                                        print(ajuste.format(seudo_elemento, diccionario[seudo_elemento][-1][0]))
-                                        print()
-                                    elemento = seudo_elemento
+                            imprimir_exponencial(diccionario,elemento,espacio)
+#------------------------------------------------------------
 
+def imprimir_exponencial(diccionario,elemento,espacio):
+    while diccionario[elemento][0] != "":
+        if diccionario[elemento][0] != "":
+            espacio += "\t"
+            ajuste= espacio + "--> {}({})"
+            for seudo_elemento in diccionario[elemento][0]:
+                print(ajuste.format(seudo_elemento, diccionario[seudo_elemento][-1][0]))
+                print()
+                imprimir_exponencial(diccionario,seudo_elemento,espacio)
+            elemento = seudo_elemento
 #------------------------------------------------------------
 
 def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama()
@@ -158,7 +161,7 @@ def identificar_funcion_principal(diccionario): #llamada desde generar_diagrama(
                 if not funcion in fue_llamada_luego:
                     fue_llamada_luego.append(funcion)
     
-    return fue_llamada_luego,llamados_principal
+    return fue_llamada_luego
                         
 #------------------------------------------------------------------------------------------------------------------------#
 #--------------------------------------------------- bloque principal ---------------------------------------------------#
