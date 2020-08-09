@@ -100,6 +100,7 @@ def juntar_informacion(lista_merge, lista_solo_funciones):
             if dato_1==0: # si se cumple esta condicion , es que dato_1 es el nombre de la funcion
                 nombre_funcion=lista_merge[linea_1][dato_1]
                 registro_de_invocaciones_a_funcion, registro_de_invocaciones_de_funcion,ultima_fila=devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,total_invocaciones,lista_solo_funciones)# invoco esta funcion para saber las veces que es invocada la variabla nombre_funcion que estoy recorriendo      
+                
         total_invocaciones_a_funciones,total_invocaciones_de_funciones=almacenar_informacion_obtenida(total_invocaciones_a_funciones,total_invocaciones_de_funciones,registro_de_invocaciones_a_funcion,registro_de_invocaciones_de_funcion)  
     return ultima_fila,total_invocaciones_a_funciones,total_invocaciones_de_funciones
 
@@ -110,15 +111,15 @@ def tamaño_primer_columna(lista_solo_funciones):
         van a ser parte de la primer columna.]   
     """
     maximo_primer_columna=0
-    adicionales=0
+    adicionales=0  # esta funcion es para que vaya agregando el numero de funciones
     lista_solo_funciones_nueva=lista_solo_funciones +["funciones","total invocaciones"]
     for funcion in lista_solo_funciones_nueva:
         if funcion!="funciones" and funcion!="total invocaciones":
             adicionales+=1
-            funcion=str(adicionales)+"."+funcion  
-        if len(funcion)>maximo_primer_columna:
+            funcion=str(adicionales)+"."+funcion  # le  doy forma a cada funcion que estaria en la primer columna
+        if len(funcion)>maximo_primer_columna: # comparo entre cada funcion renovada para sacar quien es el maximo
             maximo_primer_columna=len(funcion) # la variable maximo va a ser un valor, y ese valor es la longitud de la funcion mas larga
-    return maximo_primer_columna 
+    return maximo_primer_columna  #devuelvo el valor maximo de la primer columna
 
 def tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones):
     """[Autor: Luciano Solis]
@@ -126,7 +127,7 @@ def tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones):
         ultima_fila, ya que esta nos va a dar el tamaño que se necesita para todas las columnas, excepto la primer columna que es
         de nombre de funciones]
     """
-    maximo_numero_funcion=0
+    maximo_numero_funcion=0 # es para saber el numero maximo de las funciones que estan
     for numero_funcion in range(len(lista_solo_funciones)): # es para encontrar la palabra mas grande 
         if numero_funcion > maximo_numero_funcion:
             maximo_numero_funcion=numero_funcion
@@ -140,8 +141,9 @@ def tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones):
     contador_columna_de_datos=0# este contador va a guardar el valor del tamaño de las columnas,excepto la primer columna.
     for i in ultima_fila:
         i=str(i)
-        while len(i)<len(maximo_columna_datos):
-            i+=" "
+        if len(i)<len(maximo_columna_datos):
+            i='{:<{}s}'.format(i, len(maximo_columna_datos))
+        
         contador_columna_de_datos+=len(" "+i+"|")# con esto tengo todo el tamaño de las columnas de datos, menos la primer columna
     
     return contador_columna_de_datos, maximo_columna_datos #este el tamañano maximo de las columnas de los datos
@@ -165,9 +167,10 @@ def generar_primer_columna(variable,maximo_primer_columna):
         tengan el mismo ancho y, por último, lo muestra por pantalla.]
     """
     variable=str(variable)
-    while len(variable)<maximo_primer_columna:
-        variable+=" "
+    if len(variable)<maximo_primer_columna:
+        variable='{:<{}s}'.format(variable, maximo_primer_columna)
     print("|"+variable+"|",end="")
+    
     return variable
    
 def generar_columna_para_datos(columna_de_datos,maximo_columna_datos):
@@ -175,9 +178,10 @@ def generar_columna_para_datos(columna_de_datos,maximo_columna_datos):
        [Ayuda: Esta función lo que hace es recibir como parámetro el tamaño de las columnas, excepto la primera,
         y lo que hace es calibrar cada valor a cierta medida específica para que todas tengan el mismo ancho de columnas.]
     """
+    
     columna_de_datos=str(columna_de_datos)
-    while len(columna_de_datos)<len(str(maximo_columna_datos)):
-        columna_de_datos+=" "
+    if len(columna_de_datos)<len(str(maximo_columna_datos)):
+        columna_de_datos='{:<{}s}'.format(columna_de_datos, len(maximo_columna_datos))
     print(" "+columna_de_datos+"|",end="")
     return columna_de_datos
 
@@ -213,7 +217,7 @@ def procesar_filas_para_funciones(total_invocaciones_a_funciones, total_invocaci
        [Ayuda: Esta función recibe dos diccionarios que contienen toda la información que se necesita para mostrar por tabla
         y guardarlo en el archivo.]
     """
-    numero_de_funcion=0
+    numero_de_funcion=0 # esta variable va a ir sumando de a uno debido a las funciones que haya y se mostraria por pantalla junto a su funcion
     for clave in total_invocaciones_de_funciones:
         numero_de_funcion+=1
         primer_columna=generar_primer_columna(str(numero_de_funcion)+"."+clave,maximo_primer_columna)
@@ -244,15 +248,16 @@ def procesar_total_invocaciones(archivo,lista_solo_funciones,maximo_primer_colum
     procesar_filas_para_funciones(total_invocaciones_a_funciones, total_invocaciones_de_funciones,archivo, maximo_primer_columna,maximo_columna_datos)
     procesar_ultima_fila(archivo,maximo_primer_columna,maximo_columna_datos,ultima_fila)
 
+
 def main_analizador():
     archivo=open("analizador.txt","w")                      
     merge=open("fuente_unico.csv","r")
-    lista_merge=armado_listas(merge)
-    lista_solo_funciones=lista_s_funciones(lista_merge)
-    maximo_primer_columna=tamaño_primer_columna(lista_solo_funciones)
-    ultima_fila,total_invocaciones_a_funciones,total_invocaciones_de_funciones=juntar_informacion(lista_merge, lista_solo_funciones)
-    contador_columna_de_datos, maximo_columna_datos=tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones)
-    guiones_totales=tamaño_fila(maximo_primer_columna,contador_columna_de_datos)              
+    lista_merge=armado_listas(merge)#
+    lista_solo_funciones=lista_s_funciones(lista_merge) #
+    maximo_primer_columna=tamaño_primer_columna(lista_solo_funciones)#
+    ultima_fila,total_invocaciones_a_funciones,total_invocaciones_de_funciones=juntar_informacion(lista_merge, lista_solo_funciones)#
+    contador_columna_de_datos, maximo_columna_datos=tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones)#
+    guiones_totales=tamaño_fila(maximo_primer_columna,contador_columna_de_datos)    #          
     print(guiones_totales)
     procesar_total_invocaciones(archivo,lista_solo_funciones,maximo_primer_columna,maximo_columna_datos,total_invocaciones_a_funciones,total_invocaciones_de_funciones,ultima_fila)
     print("")                                                                                                                                                

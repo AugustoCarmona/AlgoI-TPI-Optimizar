@@ -1,2 +1,2 @@
-C:\\Users\\Gaston\\Documents\\Cursos Facultad\\AyP I\\TP 1 - Optimizar\\tp_1_optimizar\\programas\\app_matematica.py
-C:\\Users\\Gaston\\Documents\\Cursos Facultad\\AyP I\\TP 1 - Optimizar\\tp_1_optimizar\\programas\\lib_matematica.py
+./programas/app_matematica.py
+./programas/lib_matematica.py

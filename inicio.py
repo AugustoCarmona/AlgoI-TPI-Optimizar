@@ -12,24 +12,25 @@ def crear_lista():
             linea=archivo_programas.readline().rstrip("\n")
     return programas
 
-def generar_archivos_csv(programa, codigo, comentarios):
+def generar_archivos_csv(nombre_programa, codigo, comentarios):
     """[Autor: Gastón Mondín]
        [Ayuda: Crea los archivos csv en base a los diccionarios con código y comentarios que se generaron.]
     """
-    with open("./data/"+programa[programa.rindex("\\")+1:programa.index(".")]+"_codigo.csv","w") as archivo_codigo:
+    ruta="./data/"
+    with open(ruta+nombre_programa[:nombre_programa.index(".")]+"_codigo.csv","w") as archivo_codigo:
         for items in sorted(codigo):
             archivo_codigo.writelines(items)
             for item in codigo[items]:
                 archivo_codigo.writelines(";"+item)
             archivo_codigo.writelines("\n")
-    with open("./data/"+programa[programa.rindex("\\")+1:programa.index(".")]+"_comentarios.csv","w") as archivo_comentarios:
+    with open(ruta+nombre_programa[:nombre_programa.index(".")]+"_comentarios.csv","w") as archivo_comentarios:
         for items in sorted(comentarios):
             archivo_comentarios.writelines(items)
             for item in comentarios[items]:
                 archivo_comentarios.writelines(";"+item)
             archivo_comentarios.writelines("\n")
 
-def analizar_linea(linea, programa, codigo, comentarios, funcion_actual, string, comentado):
+def analizar_linea(linea, nombre_programa, codigo, comentarios, funcion_actual, string, comentado):
     """[Autor: Gastón Mondín]
        [Ayuda: Analiza una línea del programa que se está recorriendo, haciendo los cambios de línea necesarios
         y guardando todos los datos en diccionarios.]
@@ -42,12 +43,12 @@ def analizar_linea(linea, programa, codigo, comentarios, funcion_actual, string,
     elif "#" in linea:
         comentarios[funcion_actual].append(linea[linea.index("#")+1:])
         linea=linea[:linea.index("#")]
-    if "def " in linea:
+    if "def " in linea and not '"' in linea:
         funcion_actual=linea[linea.index("def ")+4:linea.index("(")]
         codigo[funcion_actual]=[]
         comentarios[funcion_actual]=[]
         codigo[funcion_actual].append(linea[linea.index("("):linea.index(":")])
-        codigo[funcion_actual].append(programa[programa.rindex("\\")+1:])
+        codigo[funcion_actual].append(nombre_programa)
     elif funcion_actual!="" and linea!="":
         if ('"""' in linea or "'''" in linea) and comentado:
             comentado=False
@@ -77,13 +78,19 @@ def recorrer_programas(programas):
     for programa in programas:
         codigo={}
         comentarios={}
-        with open(programa,"r") as archivo:
+        with open(programa,"r",encoding="utf-8") as archivo:
             funcion_actual=""
             string=""
             comentado=False
+            if programa.count("\\")>0:
+                nombre_programa=programa[programa.rindex("\\")+1:]
+            elif programa.count("/")>0:
+                nombre_programa=programa[programa.rindex("/")+1:]
+            else:
+                nombre_programa=programa
             for linea in archivo:
-                funcion_actual, string, comentado = analizar_linea(linea, programa, codigo, comentarios, funcion_actual, string, comentado)
-            generar_archivos_csv(programa, codigo, comentarios)
+                funcion_actual, string, comentado = analizar_linea(linea, nombre_programa, codigo, comentarios, funcion_actual, string, comentado)
+            generar_archivos_csv(nombre_programa, codigo, comentarios)
 
 def menu_de_opciones():
     """[Autor: Gastón Mondín]
