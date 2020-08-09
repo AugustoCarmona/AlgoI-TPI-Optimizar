@@ -100,7 +100,7 @@ def juntar_informacion(lista_merge, lista_solo_funciones):
             if dato_1==0: # si se cumple esta condicion , es que dato_1 es el nombre de la funcion
                 nombre_funcion=lista_merge[linea_1][dato_1]
                 registro_de_invocaciones_a_funcion, registro_de_invocaciones_de_funcion,ultima_fila=devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,total_invocaciones,lista_solo_funciones)# invoco esta funcion para saber las veces que es invocada la variabla nombre_funcion que estoy recorriendo      
-                print(registro_de_invocaciones_a_funcion)
+                
         total_invocaciones_a_funciones,total_invocaciones_de_funciones=almacenar_informacion_obtenida(total_invocaciones_a_funciones,total_invocaciones_de_funciones,registro_de_invocaciones_a_funcion,registro_de_invocaciones_de_funcion)  
     return ultima_fila,total_invocaciones_a_funciones,total_invocaciones_de_funciones
 
