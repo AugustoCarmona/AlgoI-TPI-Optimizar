@@ -1,3 +1,4 @@
+from tabla_1 import tabla
 #------------------------------------------------------------
 def nombre(lista_codigo,posicion,caracter,nombre_funcion):
     """[Autor: Luciano Solis]
@@ -136,9 +137,9 @@ def obtener_informacion_lista_comentarios(lista_comentarios,posicion,autor,ayuda
 #------------------------------------------------------------
 def contador(archivo, lista_codigo, lista_comentarios):
     """[Autor: Alejandro Guzman, Gastón Mondín y Luciano Solis]
-       [Ayuda: Esta función recibe dos listas anidadas y un archivo vacio. Lo que hace esta función es juntar información
+       [Ayuda: Esta función recibe dos listas anidadas y un archivo vacio, luego junta información
         de la cantidad de veces que se utiliza cada función, como así tambien los comentarios.]
-    """   
+    """
     for posicion in range(len(lista_codigo)):
         nombre_funcion=nombre_modulo=""
         autor="S/A"
@@ -155,10 +156,11 @@ def contador(archivo, lista_codigo, lista_comentarios):
             cont_while=contador_while(lista_codigo,posicion,caracter,cont_while)
             cont_break=contador_break(lista_codigo,posicion,caracter,cont_break)
             contador_exit(lista_codigo,posicion,caracter,cont_exit)
+        
         autor,ayuda,cont_coment=obtener_informacion_lista_comentarios(lista_comentarios,posicion,autor,ayuda,cont_coment)                          
-        cont_invocaciones=cantidad_de_invocaciones(lista_codigo, nombre_funcion, posicion)
+        cont_invocaciones=cantidad_de_invocaciones(lista_codigo, nombre_funcion, posicion)     
         diccionario={"FUNCION":nombre_funcion+"." +nombre_modulo,"Parámetros":cont_parametr,"Líneas": cont_lineas,"Invocaciones":cont_invocaciones,"Returns":cont_return,"If/elif":cont_if,"For":cont_for,"While":cont_while,"Break":cont_break,"Exit":cont_exit,"Coment":cont_coment,"Ayuda":ayuda,"Autor":autor}
-        imprimir_diccionario(diccionario)
+        tabla(diccionario)
         grabar_archivo(diccionario, archivo, posicion)
 
 #------------------------------------------------------------
@@ -174,15 +176,6 @@ def armado_listas_anidadas(merge_fuente_unico):
         linea=merge_fuente_unico.readline().split(";")
     
     return lista_final
-
-#------------------------------------------------------------
-def imprimir_diccionario(diccionario):
-    """[Autor: Luciano Solis]
-       [Ayuda: Recibe el diccionario con los datos cargados y los muestra.]
-    """
-    for clave in diccionario:
-        print("{}: {}".format(clave, diccionario[clave]))
-    print("\n")
 
 #------------------------------------------------------------
 def grabar_archivo(diccionario, archivo, posicion):
@@ -203,6 +196,19 @@ def grabar_archivo(diccionario, archivo, posicion):
             archivo.write(str(diccionario[campo]))
     archivo.write("\n")
 
+#------------------------------------------------------------
+def imprimir_tabla(archivo,lista_fuente_unico, lista_comentarios):
+    """ [Autor: Augusto Carmona]
+        [Ayuda: Prepara la impresion de la informacion de contadores en formato tabla]
+    """
+    print()
+    print(" ________________________________________________________________________________________________________________________")
+    print("|           Funcion/Modulo           ", "| Par", "| Lín", "| Inv", "| Ret", "| If ", "| For", "| Whi", "| Bre", "| Ext", "| Com", "|Ayu", "|     Autor      |")
+    print("|_____________________________________|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____|________________|")
+    contador(archivo,lista_fuente_unico, lista_comentarios)
+    print("|_____________________________________|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____|________________|")
+    print()
+
 #--------------------------------------------------------------------------------------------------------------------------
 #------------------------------------------- bloque principal -------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------------------------------
@@ -214,5 +220,5 @@ def main_panel():
     lista_comentarios=armado_listas_anidadas(merge_comentarios)
     merge_fuente_unico.close()
     merge_comentarios.close()
-    contador(archivo,lista_fuente_unico, lista_comentarios)
+    imprimir_tabla(archivo,lista_fuente_unico, lista_comentarios)
     archivo.close()

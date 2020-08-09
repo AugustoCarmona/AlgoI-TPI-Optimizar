@@ -1,0 +1,2 @@
+/home/augusto/Documentos/pruebra_de_estres_tpg/programas/app_matematica.py
+/home/augusto/Documentos/pruebra_de_estres_tpg/programas/lib_matematica.py

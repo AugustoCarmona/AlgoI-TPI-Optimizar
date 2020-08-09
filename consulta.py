@@ -1,5 +1,5 @@
 from tabla_2 import tabla
-#------------------------------------------------------------
+
 def extraer_informacion():
     
     dicc_funciones = {}
@@ -11,7 +11,6 @@ def extraer_informacion():
 
     return sorted(dicc_funciones), dicc_funciones
 
-#------------------------------------------------------------
 def extractor_informacion_general(): #se activa en main
     """ [Autor: Augusto Carmona]
         [Ayuda: Lee cada línea del archivo .csv y extrae los datos de las funciones.
@@ -33,7 +32,7 @@ def extractor_informacion_general(): #se activa en main
             
         return dicc_informacion_general
 
-#------------------------------------------------------------
+#-----------------------------------
 def extractor_informacion_ayuda():
     """ [Autor: Augusto Carmona]
         [Ayuda: ]
@@ -61,8 +60,8 @@ def extractor_informacion_ayuda():
         
         return dicc_comentarios
 
-#------------------------------------------------------------
-#------------------------------------------------------------
+#-----------------------------------------------------------
+#-----------------------------------------------------------
 def generador_tabla(lista_funciones): #se activa en main
     """ [Autor: Augusto Carmona]
         [Ayuda: Agrega a cada funcion un "()" y utiliza la lista de funciones para 
@@ -78,8 +77,8 @@ def generador_tabla(lista_funciones): #se activa en main
     
     tabla(nueva_lista_funciones)
 
-#------------------------------------------------------------
-#------------------------------------------------------------
+#-----------------------------------------------------------
+#-----------------------------------------------------------
 def consulta_individual(funcion, diccionario_funciones): #se activa en menu_ingreso
     """ [Autor: Augusto Carmona]
         [Ayuda: Recibe el nombre de una función y el diccionario de funciones
@@ -98,7 +97,7 @@ def consulta_individual(funcion, diccionario_funciones): #se activa en menu_ingr
     print('----------------------------------------------')
     print()
 
-#------------------------------------------------------------
+#-----------------------------------
 def descripcion_individual(funcion, diccionario_funciones): #se activa en menu_ingreso
     """ [Autor: Augusto Carmona]
         [Ayuda: Recibe el nombre de una función y el diccionario de funciones
@@ -117,7 +116,7 @@ def descripcion_individual(funcion, diccionario_funciones): #se activa en menu_i
     print('-----------------------------------')
     print()
 
-#------------------------------------------------------------
+#-----------------------------------
 def consulta_general(lista_funciones, diccionario_funciones): #se activa en menu_ingreso
     """ [Autor: Augusto Carmona]
         [Ayuda: Muestra en display la sección de ayuda, autor y parametros de cada función, anteponiendo
@@ -127,7 +126,7 @@ def consulta_general(lista_funciones, diccionario_funciones): #se activa en menu
         consulta_individual(funcion, diccionario_funciones)
         
 
-#------------------------------------------------------------
+#-----------------------------------
 def descripcion_general(lista_funciones, diccionario_funciones): #se activa en menu_ingreso
     """ [Autor: Augusto Carmona]
         [Ayuda: Muestra en display la informacción de contadres internos de cada función, anteponiendo
@@ -136,7 +135,7 @@ def descripcion_general(lista_funciones, diccionario_funciones): #se activa en m
     for funcion in lista_funciones:
         descripcion_individual(funcion, diccionario_funciones)
 
-#------------------------------------------------------------
+#-----------------------------------        
 def imprimir_ayuda(lista_funciones, diccionario_funciones):
     archivo_imprimir = open('ayuda_funciones.txt', 'w')
     for funcion in lista_funciones:
@@ -151,7 +150,7 @@ def imprimir_ayuda(lista_funciones, diccionario_funciones):
     print('Se mando todo al archivo ayuda_funciones.txt')
     print()
 
-#------------------------------------------------------------
+#-----------------------------------
 def menu_ingreso(lista_funciones, diccionario_funciones): #se activa en main
     """ [Autor: Augusto Carmona]
         [Ayuda: Solicita el ingreso de la función a analizar y la deriva a la función
@@ -192,9 +191,6 @@ def menu_ingreso(lista_funciones, diccionario_funciones): #se activa en main
             print()
             ing = input(" Usted ha ingresado una orden incorrecta, por favor reingrese: ")
 
-#--------------------------------------------------------------------------------------------------------------------------
-#------------------------------------------- bloque principal -------------------------------------------------------------
-#--------------------------------------------------------------------------------------------------------------------------
 def main_consulta():
     """[Autor: Augusto Carmona]
        [Ayuda: Ejecuta la función principal y hace display de los comandos.]

@@ -1,4 +1,3 @@
-#------------------------------------------------------------
 def armado_listas(merge):
     """[Autor: Luciano Solis]
        [Ayuda: Recibe un archivo y devuelve toda su información en una lista anidada.]
@@ -8,10 +7,8 @@ def armado_listas(merge):
     while linea!=[""]:
         lista_final.append(linea)
         linea=merge.readline().strip("\n").split(";")
-    
     return lista_final
 
-#------------------------------------------------------------
 def lista_s_funciones(lista_merge):
     """[Autor: Luciano Solis]
        [Ayuda: Recibe una lista anidada y devuelve una lista con solo la primera posición de cada sublista de la lista anidada.]
@@ -19,10 +16,8 @@ def lista_s_funciones(lista_merge):
     lista_solo_funciones=[]
     for i in range(len(lista_merge)):
         lista_solo_funciones.append(lista_merge[i][0])
-    
     return lista_solo_funciones
 
-#------------------------------------------------------------
 def almacenar_datos_en_diccionarios(nombre_funcion,diccionario,lista_de_datos):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es agregar datos de las invocaciones a un diccionario.]
@@ -31,10 +26,8 @@ def almacenar_datos_en_diccionarios(nombre_funcion,diccionario,lista_de_datos):
         diccionario[nombre_funcion]=lista_de_datos
     else:
         diccionario[nombre_funcion]+=lista_de_datos         
-    
     return diccionario
 
-#------------------------------------------------------------
 def almacenar_informacion_obtenida(total_invocaciones_a_funciones,total_invocaciones_de_funciones,registro_de_invocaciones_a_funcion,registro_de_invocaciones_de_funcion):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es ir guardando la información obtenida en los dos diccionarios finales.]
@@ -44,10 +37,8 @@ def almacenar_informacion_obtenida(total_invocaciones_a_funciones,total_invocaci
             total_invocaciones_a_funciones[clave]=registro_de_invocaciones_a_funcion[clave]
         if clave not in total_invocaciones_de_funciones:
             total_invocaciones_de_funciones[clave]=registro_de_invocaciones_de_funcion[clave]
-    
     return total_invocaciones_a_funciones,total_invocaciones_de_funciones
 
-#------------------------------------------------------------
 def invocaciones_de_funcion_a_funciones(linea_2,lista_solo_funciones,lista_merge,nombre_funcion):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función solo es invocada cuando linea_2 y linea_1 son iguales, y lo que hace es saber las veces
@@ -59,16 +50,14 @@ def invocaciones_de_funcion_a_funciones(linea_2,lista_solo_funciones,lista_merge
         cantidad=0
         for dato_3 in range(len(lista_merge[linea_2])):
             if dato_3!=0:
-                if funcion+"(" in lista_merge[linea_2][dato_3] and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1]!="_" and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion)-1].isalnum()== False:
+                if funcion+"(" in lista_merge[linea_2][dato_3] and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion+"(")-1]!="_" and lista_merge[linea_2][dato_3][lista_merge[linea_2][dato_3].index(funcion+"(")-1].isalnum()== False:
                     cantidad +=1                        
         if cantidad==0:
             cantidad=""
         invocada+=[[funcion,cantidad]] # guardo la funcion que se recorrio con las veces que fue invocada
         registro_de_invocaciones_de_funcion=almacenar_datos_en_diccionarios(nombre_funcion,registro_de_invocaciones_de_funcion,invocada) 
-    
     return registro_de_invocaciones_de_funcion
 
-#------------------------------------------------------------
 def devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,total_invocaciones,lista_solo_funciones):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es recorrer cada una de las funciones e ir obteniendo las veces que dicha función que se esta
@@ -83,7 +72,7 @@ def devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,tota
         for dato_2 in range(len(lista_merge[linea_2])):
             if dato_2==0: # si se cumple esta condicion significa que esta en la posicion del nombre la funcion
                 invocador=lista_merge[linea_2][dato_2]
-            elif nombre_funcion+"(" in lista_merge[linea_2][dato_2] and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1]!="_" and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion)-1].isalnum()== False:
+            elif nombre_funcion+"(" in lista_merge[linea_2][dato_2] and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion+"(")-1]!="_" and lista_merge[linea_2][dato_2][lista_merge[linea_2][dato_2].index(nombre_funcion+"(")-1].isalnum()== False:
                 cont_invocaciones="x"#cont_invocaciones+=1 #revisar
                 cont_total_invocaciones+=1
             if cont_invocaciones==0 and dato_2==len(lista_merge[linea_2])-1:
@@ -93,11 +82,10 @@ def devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,tota
         if linea_1==linea_2:
             registro_de_invocaciones_de_funcion=invocaciones_de_funcion_a_funciones(linea_2,lista_solo_funciones,lista_merge,nombre_funcion)
     total_invocaciones.append(cont_total_invocaciones)#guardo el total de veces que dicha funcion fue invocada por las demas funciones en una lista
-    
     return registro_de_invocaciones_a_funcion,registro_de_invocaciones_de_funcion,total_invocaciones
 
 
-#------------------------------------------------------------
+
 def juntar_informacion(lista_merge, lista_solo_funciones):
     """[Autor: Luciano Solis]
        [Ayuda: Recibe una lista anidada, y va recorriendo cada sublista para verificar las veces en que la función
@@ -113,10 +101,8 @@ def juntar_informacion(lista_merge, lista_solo_funciones):
                 nombre_funcion=lista_merge[linea_1][dato_1]
                 registro_de_invocaciones_a_funcion, registro_de_invocaciones_de_funcion,ultima_fila=devolver_informacion_de_invocaciones(linea_1,lista_merge,nombre_funcion,total_invocaciones,lista_solo_funciones)# invoco esta funcion para saber las veces que es invocada la variabla nombre_funcion que estoy recorriendo      
         total_invocaciones_a_funciones,total_invocaciones_de_funciones=almacenar_informacion_obtenida(total_invocaciones_a_funciones,total_invocaciones_de_funciones,registro_de_invocaciones_a_funcion,registro_de_invocaciones_de_funcion)  
-    
     return ultima_fila,total_invocaciones_a_funciones,total_invocaciones_de_funciones
 
-#------------------------------------------------------------
 def tamaño_primer_columna(lista_solo_funciones):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función recibe la lista que solo contiene los nombres de las funciones y lo que hace es encontrar la palabra
@@ -132,10 +118,8 @@ def tamaño_primer_columna(lista_solo_funciones):
             funcion=str(adicionales)+"."+funcion  
         if len(funcion)>maximo_primer_columna:
             maximo_primer_columna=len(funcion) # la variable maximo va a ser un valor, y ese valor es la longitud de la funcion mas larga
-    
     return maximo_primer_columna 
 
-#------------------------------------------------------------
 def tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es encontrar el valor más grande que se encuentra entre el numero de funciones que hay y
@@ -162,7 +146,6 @@ def tamaño_columnas_de_datos(ultima_fila,lista_solo_funciones):
     
     return contador_columna_de_datos, maximo_columna_datos #este el tamañano maximo de las columnas de los datos
 
-#------------------------------------------------------------
 def tamaño_fila(maximo_primer_columna,contador_columna_de_datos):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es encontrar el ancho total de la tabla, y ese ancho lo vamos a mostrar en
@@ -173,10 +156,8 @@ def tamaño_fila(maximo_primer_columna,contador_columna_de_datos):
     guiones_totales=""
     for guiones in range(suma_de_columnas_totales):
         guiones_totales+="-"
-    
     return guiones_totales
 
-#------------------------------------------------------------
 def generar_primer_columna(variable,maximo_primer_columna):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función sólo recibe al primer valor de cada fila, es decir, a la primer columna de cada fila, y lo que hace
@@ -187,10 +168,8 @@ def generar_primer_columna(variable,maximo_primer_columna):
     while len(variable)<maximo_primer_columna:
         variable+=" "
     print("|"+variable+"|",end="")
-    
     return variable
-
-#------------------------------------------------------------
+   
 def generar_columna_para_datos(columna_de_datos,maximo_columna_datos):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es recibir como parámetro el tamaño de las columnas, excepto la primera,
@@ -200,10 +179,8 @@ def generar_columna_para_datos(columna_de_datos,maximo_columna_datos):
     while len(columna_de_datos)<len(str(maximo_columna_datos)):
         columna_de_datos+=" "
     print(" "+columna_de_datos+"|",end="")
-    
     return columna_de_datos
 
-#------------------------------------------------------------
 def procesar_primer_fila(lista_solo_funciones,archivo,maximo_primer_columna,maximo_columna_datos):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es imprimir la primer fila, para esto se invoca a dos funciones, una para calibrar el
@@ -216,7 +193,6 @@ def procesar_primer_fila(lista_solo_funciones,archivo,maximo_primer_columna,maxi
         archivo.write(columna_de_datos+"|")
     archivo.write("\n")
 
-#------------------------------------------------------------
 def comparacion_entre_valores(total_invocaciones_a_funciones,diccionario_2,clave,posicion,archivo,maximo_columna_datos):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es comparar los valores que hay en los dos diccionarios para decidir
@@ -232,7 +208,6 @@ def comparacion_entre_valores(total_invocaciones_a_funciones,diccionario_2,clave
         columna_de_datos=generar_columna_para_datos(diccionario_2[clave][posicion][1],maximo_columna_datos)
         archivo.write(str(columna_de_datos)+"|")             
 
-#------------------------------------------------------------
 def procesar_filas_para_funciones(total_invocaciones_a_funciones, total_invocaciones_de_funciones,archivo, maximo_primer_columna,maximo_columna_datos):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función recibe dos diccionarios que contienen toda la información que se necesita para mostrar por tabla
@@ -248,7 +223,6 @@ def procesar_filas_para_funciones(total_invocaciones_a_funciones, total_invocaci
         archivo.write("\n")
         print("")  
 
-#------------------------------------------------------------
 def procesar_ultima_fila(archivo,maximo_primer_columna,maximo_columna_datos,ultima_fila):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función recibe una lista que contiene las invocaciones totales que tuvo cada función a analizar, ordenada de la misma
@@ -261,7 +235,6 @@ def procesar_ultima_fila(archivo,maximo_primer_columna,maximo_columna_datos,ulti
         columna_de_datos=generar_columna_para_datos(total_invocaciones,maximo_columna_datos)#generar_columna_a_caracter(total_invocaciones,maximo)
         archivo.write(str(columna_de_datos+"|"))
 
-#------------------------------------------------------------
 def procesar_total_invocaciones(archivo,lista_solo_funciones,maximo_primer_columna,maximo_columna_datos,total_invocaciones_a_funciones,total_invocaciones_de_funciones,ultima_fila):
     """[Autor: Luciano Solis]
        [Ayuda: Esta función lo que hace es mostrar toda la información que se obtuvo en formato tabla.]
@@ -271,9 +244,6 @@ def procesar_total_invocaciones(archivo,lista_solo_funciones,maximo_primer_colum
     procesar_filas_para_funciones(total_invocaciones_a_funciones, total_invocaciones_de_funciones,archivo, maximo_primer_columna,maximo_columna_datos)
     procesar_ultima_fila(archivo,maximo_primer_columna,maximo_columna_datos,ultima_fila)
 
-#--------------------------------------------------------------------------------------------------------------------------
-#------------------------------------------- bloque principal -------------------------------------------------------------
-#--------------------------------------------------------------------------------------------------------------------------
 def main_analizador():
     archivo=open("analizador.txt","w")                      
     merge=open("fuente_unico.csv","r")

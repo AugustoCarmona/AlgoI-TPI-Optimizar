@@ -1,0 +1,14 @@
+FUNCION;Parámetros;Líneas;Invocaciones;Returns;If/elif;For;While;Break;Exit;Coment;Ayuda;Autor
+es_primo.lib_matematica.py         ;1  ;10 ;1  ;1  ;2  ;0  ;1  ;0  ;0  ;1  ;Si;Juan Perez     
+factorial.lib_matematica.py        ;1  ;4  ;1  ;1  ;0  ;1  ;0  ;0  ;0  ;0  ;Si;Juan Perez     
+mcd.lib_matematica.py              ;2  ;20 ;2  ;1  ;3  ;0  ;1  ;0  ;0  ;2  ;Si;Ana Garcia     
+mcm.lib_matematica.py              ;2  ;1  ;1  ;1  ;0  ;0  ;0  ;0  ;0  ;0  ;Si;Ana Garcia     
+menu_MCD.app_matematica.py         ;0  ;4  ;1  ;0  ;0  ;0  ;0  ;0  ;0  ;0  ;Si;Juan Perez     
+menu_MCM.app_matematica.py         ;0  ;4  ;1  ;0  ;0  ;0  ;0  ;0  ;0  ;0  ;Si;Juan Perez     
+menu_elegir.app_matematica.py      ;0  ;17 ;0  ;0  ;4  ;0  ;1  ;0  ;0  ;0  ;NO;S/A            
+menu_factorial.app_matematica.py   ;0  ;3  ;1  ;0  ;0  ;0  ;0  ;0  ;0  ;0  ;Si;Alan Gonzalez  
+menu_opciones.app_matematica.py    ;0  ;10 ;2  ;0  ;0  ;0  ;0  ;0  ;0  ;0  ;Si;Alan Gonzalez  
+menu_potencia.app_matematica.py    ;0  ;4  ;1  ;0  ;0  ;0  ;0  ;0  ;0  ;0  ;Si;Juan Perez     
+menu_primo.app_matematica.py       ;0  ;3  ;1  ;0  ;1  ;0  ;0  ;0  ;0  ;0  ;Si;Alan Gonzalez  
+potencia.lib_matematica.py         ;2  ;8  ;1  ;1  ;2  ;1  ;0  ;0  ;0  ;0  ;Si;Ana Garcia     
+solicitar_valor.app_matematica.py  ;3  ;5  ;10 ;1  ;0  ;0  ;1  ;0  ;0  ;0  ;Si;Juan Perez     
