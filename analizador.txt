@@ -1,0 +1,15 @@
+funciones         |1 |2 |3 |4 |5 |6 |7 |8 |9 |10|11|12|13|
+1.es_primo        |  |  |  |  |  |  |  |  |  |  |x |  |  |
+2.factorial       |  |  |  |  |  |  |  |x |  |  |  |  |  |
+3.mcd             |  |  |  |x |x |  |  |  |  |  |  |  |  |
+4.mcm             |  |  |1 |  |  |x |  |  |  |  |  |  |  |
+5.menu_MCD        |  |  |1 |  |  |  |x |  |  |  |  |  |2 |
+6.menu_MCM        |  |  |  |1 |  |  |x |  |  |  |  |  |2 |
+7.menu_elegir     |  |  |  |  |1 |1 |  |1 |2 |1 |1 |  |2 |
+8.menu_factorial  |  |1 |  |  |  |  |x |  |  |  |  |  |1 |
+9.menu_opciones   |  |  |  |  |  |  |x |  |  |  |  |  |  |
+10.menu_potencia  |  |  |  |  |  |  |x |  |  |  |  |1 |2 |
+11.menu_primo     |1 |  |  |  |  |  |x |  |  |  |  |  |1 |
+12.potencia       |  |  |  |  |  |  |  |  |  |x |  |  |  |
+13.solicitar_valor|  |  |  |  |x |x |x |x |  |x |x |  |  |
+total invocaciones|1 |1 |2 |1 |1 |1 |0 |1 |2 |1 |1 |1 |10|
