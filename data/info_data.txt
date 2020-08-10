@@ -1,1 +1,0 @@
-En esta carpeta se guarda toda la informacion necesaria para la realización del merge

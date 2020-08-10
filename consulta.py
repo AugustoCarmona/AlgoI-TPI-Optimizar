@@ -89,8 +89,6 @@ def consulta_individual(funcion, diccionario_funciones): #se activa en menu_ingr
     print()
     print('|Info|:')
     print('-------------')
-    print("Funcion: {}()".format(funcion)) #se agregó el faltante (nombre de la funcion)
-    print("-" * 6)
     print(diccionario_funciones[funcion][1][0].strip("[]")) #autor
     print("-" * 6)
     print(diccionario_funciones[funcion][1][1].strip("[]")) #ayuda
