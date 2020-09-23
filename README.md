@@ -1,4 +1,4 @@
-Trabajo practico número 1
+Trabajo practico numero 1
 
 Este es el Trabajo Practico numero 1 de la materia Algoritmos y Programacion I.
 
