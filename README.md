@@ -7,3 +7,5 @@ El modulo principal es main.py que correra el resto de los archivos. El objetivo
 programadas en python.
 
 #### El trabajo fue aprobado en su totalidad
+
+El siguiente es el video entregado para la demostración de la aplicación: https://www.youtube.com/watch?v=s6XYsqd0uL4&t=10s
